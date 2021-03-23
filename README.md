@@ -1,2 +1,2 @@
-# Task-Manager
+# Task Manager
 Manager of different background tasks
