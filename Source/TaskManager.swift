@@ -4,7 +4,7 @@
 //
 
 import Foundation
-//TODO: check subpods dependecies everywhere!!!
+
 /**
  Manager of different background tasks.
  Implements advanced queue logic that considers operation's priority.

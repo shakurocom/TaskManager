@@ -5,7 +5,7 @@
 
 import Foundation
 
-public protocol CancellableTask {
+public protocol CancellableTask: class {
 
     var operationHash: String { get }
     var isCancelled: Bool { get }
@@ -26,7 +26,7 @@ public final class Task<ResultType>: CancellableTask {
     }
 
     /**
-     Identyfier of internal operation.
+     Identifier of internal operation.
      Can be used to detect operation, that was reused from queue.
      */
     public var operationHash: String {
