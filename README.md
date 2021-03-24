@@ -108,9 +108,9 @@ func finish(result: CancellableAsyncResult<ResultType>) based on the result afte
 
 ## Requirements
 
-- iOS 10.0+
+- iOS 13.0+
 - Xcode 9.2+
-- Swift 4.0+
+- Swift 5.0+
 
 ## Installation
 
@@ -126,11 +126,11 @@ To integrate Toolbox into your Xcode project, specify it in your `Podfile`:
 
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '10.0'
+platform :ios, '13.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'Shakuro.TaskManager', :git => 'https://gitlab.com/shakuro-public/task-manager.git', :tag => '1.0.0'
+    pod 'Shakuro.TaskManager', '0.0.5'
 end
 ```
 
