@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
     s.license          = { :type => "MIT", :file => "LICENSE.md" }
     s.authors          = {'apopov1988' => 'apopov@shakuro.com', 'wwwpix' => 'spopov@shakuro.com'}
     s.source           = { :git => 'https://github.com/shakurocom/TaskManager.git', :tag => s.version }
-    s.source_files     = 'Source/*'
+    s.source_files     = 'Source/*', 'Source/**/*'
 
     s.swift_version    = ['5.1', '5.2', '5.3']
     s.ios.deployment_target = '13.0'
