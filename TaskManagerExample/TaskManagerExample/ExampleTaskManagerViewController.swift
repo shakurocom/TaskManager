@@ -18,9 +18,14 @@ internal class ExampleTaskManager: TaskManager {
 
     private let randomOrgClient: HTTPClient
 
-    init(name aName: String, qualityOfService: QualityOfService, maxConcurrentOperationCount: Int, randomOrgClient aRandomOrgClient: HTTPClient) {
-        randomOrgClient = aRandomOrgClient
-        super.init(name: aName, qualityOfService: qualityOfService, maxConcurrentOperationCount: maxConcurrentOperationCount)
+    init(name: String,
+         qualityOfService: QualityOfService,
+         maxConcurrentOperationCount: Int,
+         randomOrgClient: HTTPClient) {
+        self.randomOrgClient = randomOrgClient
+        super.init(name: name,
+                   qualityOfService: qualityOfService,
+                   maxConcurrentOperationCount: maxConcurrentOperationCount)
     }
 
     override func willPerformOperation(newOperation: TaskManager.OperationInQueue,
@@ -28,15 +33,28 @@ internal class ExampleTaskManager: TaskManager {
         let result: TaskManager.OperationInQueue
         switch newOperation {
         case _ as UniqueOperation:
-            let uniqueInQueue = enqueuedOperations.first(where: { $0.operationHash == newOperation.operationHash })
-            result = uniqueInQueue ?? newOperation
+            let operationInQueue = operation(operations: enqueuedOperations, hash: newOperation.operationHash)
+            result = operationInQueue ?? newOperation
 
         case _ as DependsOnAlwaysFailOperation:
-            let dependencyInQueue = enqueuedOperations.first(where: { $0 is AlwaysFailInTheEndOperation })
-            if let actualDependency = dependencyInQueue {
-                newOperation.addDependency(operation: actualDependency, isStrongDependency: true)
-            }
+            formDependency(newOperation: newOperation,
+                           queue: enqueuedOperations,
+                           oldOperationType: AlwaysFailInTheEndOperation.self,
+                           isStrongDependency: true)
             result = newOperation
+
+
+            // add good example for dependency
+//            let operationInQueue = operation(operations: enqueuedOperations, hash: newOperation.operationHash)
+//            if let existingOperation = operationInQueue {
+//                result = existingOperation
+//            } else {
+//                result = newOperation
+//                formDependency(newOperation: newOperation,
+//                               queue: enqueuedOperations,
+//                               oldOperationType: AlwaysFailInTheEndOperation.self,
+//                               isStrongDependency: false)
+//            }
 
         default:
             result = newOperation
@@ -102,6 +120,25 @@ extension ExampleTaskManager {
             willRetry: { print("will retry: attempt: \($0) result: \($1)") },
             didRetry: { print("did retry: attempt: \($0) result: \($1)") })
         )
+    }
+
+}
+
+// MARK: - Private
+
+private extension ExampleTaskManager {
+
+    private func operation(operations: [OperationInQueue], hash: String) -> OperationInQueue? {
+        let operationInQueue = operations.last(where: { (operation) -> Bool in
+            return (operation.operationHash == hash) && !operation.isCancelled
+        })
+        return operationInQueue
+    }
+
+    private func formDependency<T>(newOperation: OperationInQueue, queue: [OperationInQueue], oldOperationType: T.Type, isStrongDependency: Bool) {
+        if let operationInQueue = queue.last(where: { $0 is T }) {
+            newOperation.addDependency(operation: operationInQueue, isStrongDependency: isStrongDependency)
+        }
     }
 
 }
