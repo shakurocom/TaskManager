@@ -1,7 +1,6 @@
 ![Shakuro Task Manager](title_image.png)
-# Task Manager
 <br><br>
-
+# Task Manager
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 ![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)
 ![License MIT](https://img.shields.io/badge/license-MIT-green.svg)
