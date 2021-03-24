@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JSC-Dx-LlD">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Example Task Manager View Controller-->
+        <scene sceneID="BNi-BO-c4r">
+            <objects>
+                <viewController storyboardIdentifier="kExampleTaskManagerViewControllerID" id="JSC-Dx-LlD" customClass="ExampleTaskManagerViewController" customModule="iOSToolboxExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="srZ-me-fwb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q9U-Um-9kw">
+                                <rect key="frame" x="30" y="74" width="354" height="50"/>
+                                <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="h5b-F2-K4d"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                <state key="normal" title="adfafd"/>
+                                <connections>
+                                    <action selector="operationButton1Tapped" destination="JSC-Dx-LlD" eventType="touchUpInside" id="l76-ul-Zq0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ahw-VL-QO7">
+                                <rect key="frame" x="30" y="154" width="354" height="50"/>
+                                <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="8Ln-1a-m2r"/>
+                                </constraints>
+                                <state key="normal" title="perform operation"/>
+                                <connections>
+                                    <action selector="operationButton2Tapped" destination="JSC-Dx-LlD" eventType="touchUpInside" id="dXK-y8-wGP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m0l-Gb-nf0">
+                                <rect key="frame" x="30" y="234" width="354" height="50"/>
+                                <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="PFB-uH-Y7O"/>
+                                </constraints>
+                                <state key="normal" title="perform operation"/>
+                                <connections>
+                                    <action selector="operationButton3Tapped" destination="JSC-Dx-LlD" eventType="touchUpInside" id="IkC-Dd-0tY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sd8-gz-U5E">
+                                <rect key="frame" x="30" y="314" width="354" height="50"/>
+                                <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="NcN-4z-x3F"/>
+                                </constraints>
+                                <state key="normal" title="perform operation"/>
+                                <connections>
+                                    <action selector="operationButton4Tapped" destination="JSC-Dx-LlD" eventType="touchUpInside" id="CXX-yk-auy"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zZU-Dk-U0U">
+                                <rect key="frame" x="30" y="394" width="354" height="50"/>
+                                <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="phk-Xr-bjq"/>
+                                </constraints>
+                                <state key="normal" title="perform operation"/>
+                                <connections>
+                                    <action selector="operationButton5Tapped" destination="JSC-Dx-LlD" eventType="touchUpInside" id="bws-Yy-1F3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JPV-Vj-3P4">
+                                <rect key="frame" x="30" y="474" width="354" height="50"/>
+                                <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="hYD-ap-KQq"/>
+                                </constraints>
+                                <state key="normal" title="perform operation"/>
+                                <connections>
+                                    <action selector="operationButton6Tapped" destination="JSC-Dx-LlD" eventType="touchUpInside" id="aab-oJ-CRN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E4G-Fi-SG1">
+                                <rect key="frame" x="30" y="554" width="354" height="50"/>
+                                <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="aqc-3q-bTP"/>
+                                </constraints>
+                                <state key="normal" title="perform operation"/>
+                                <connections>
+                                    <action selector="operationButton7Tapped" destination="JSC-Dx-LlD" eventType="touchUpInside" id="30B-p8-rVQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Ahw-VL-QO7" firstAttribute="leading" secondItem="JZd-Xg-yBT" secondAttribute="leading" constant="30" id="6RP-zl-fkl"/>
+                            <constraint firstItem="Q9U-Um-9kw" firstAttribute="top" secondItem="JZd-Xg-yBT" secondAttribute="top" constant="30" id="Afl-KM-2NS"/>
+                            <constraint firstItem="JZd-Xg-yBT" firstAttribute="trailing" secondItem="zZU-Dk-U0U" secondAttribute="trailing" constant="30" id="Bmw-dj-qXY"/>
+                            <constraint firstItem="JZd-Xg-yBT" firstAttribute="trailing" secondItem="Ahw-VL-QO7" secondAttribute="trailing" constant="30" id="CRD-6q-WgU"/>
+                            <constraint firstItem="E4G-Fi-SG1" firstAttribute="top" secondItem="JPV-Vj-3P4" secondAttribute="bottom" constant="30" id="Cfw-5h-kcs"/>
+                            <constraint firstItem="JZd-Xg-yBT" firstAttribute="trailing" secondItem="m0l-Gb-nf0" secondAttribute="trailing" constant="30" id="Cpx-Ce-nwe"/>
+                            <constraint firstItem="Sd8-gz-U5E" firstAttribute="leading" secondItem="JZd-Xg-yBT" secondAttribute="leading" constant="30" id="EcO-fJ-O59"/>
+                            <constraint firstItem="Ahw-VL-QO7" firstAttribute="top" secondItem="Q9U-Um-9kw" secondAttribute="bottom" constant="30" id="FZY-An-pxP"/>
+                            <constraint firstItem="E4G-Fi-SG1" firstAttribute="leading" secondItem="JZd-Xg-yBT" secondAttribute="leading" constant="30" id="IjJ-Su-TzK"/>
+                            <constraint firstItem="JPV-Vj-3P4" firstAttribute="leading" secondItem="JZd-Xg-yBT" secondAttribute="leading" constant="30" id="JdL-ME-ybw"/>
+                            <constraint firstItem="zZU-Dk-U0U" firstAttribute="leading" secondItem="JZd-Xg-yBT" secondAttribute="leading" constant="30" id="MjU-3M-pbz"/>
+                            <constraint firstItem="JZd-Xg-yBT" firstAttribute="trailing" secondItem="E4G-Fi-SG1" secondAttribute="trailing" constant="30" id="PZt-xf-NjV"/>
+                            <constraint firstItem="JPV-Vj-3P4" firstAttribute="top" secondItem="zZU-Dk-U0U" secondAttribute="bottom" constant="30" id="QwQ-Po-ZDY"/>
+                            <constraint firstItem="Q9U-Um-9kw" firstAttribute="leading" secondItem="JZd-Xg-yBT" secondAttribute="leading" constant="30" id="Vm4-fF-Zfp"/>
+                            <constraint firstItem="JZd-Xg-yBT" firstAttribute="trailing" secondItem="Q9U-Um-9kw" secondAttribute="trailing" constant="30" id="ZF5-9r-tvT"/>
+                            <constraint firstItem="m0l-Gb-nf0" firstAttribute="top" secondItem="Ahw-VL-QO7" secondAttribute="bottom" constant="30" id="ZfG-cf-duv"/>
+                            <constraint firstItem="m0l-Gb-nf0" firstAttribute="leading" secondItem="JZd-Xg-yBT" secondAttribute="leading" constant="30" id="ba6-B9-vnG"/>
+                            <constraint firstItem="JZd-Xg-yBT" firstAttribute="trailing" secondItem="Sd8-gz-U5E" secondAttribute="trailing" constant="30" id="iJe-E7-eI7"/>
+                            <constraint firstItem="zZU-Dk-U0U" firstAttribute="top" secondItem="Sd8-gz-U5E" secondAttribute="bottom" constant="30" id="mmU-zv-s8N"/>
+                            <constraint firstItem="Sd8-gz-U5E" firstAttribute="top" secondItem="m0l-Gb-nf0" secondAttribute="bottom" constant="30" id="shu-66-6ic"/>
+                            <constraint firstItem="JZd-Xg-yBT" firstAttribute="trailing" secondItem="JPV-Vj-3P4" secondAttribute="trailing" constant="30" id="yn0-kT-CCT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="JZd-Xg-yBT"/>
+                    </view>
+                    <connections>
+                        <outlet property="operationButton1" destination="Q9U-Um-9kw" id="Ftb-lk-PEq"/>
+                        <outlet property="operationButton2" destination="Ahw-VL-QO7" id="FOr-8R-Sox"/>
+                        <outlet property="operationButton3" destination="m0l-Gb-nf0" id="bki-g4-ZCR"/>
+                        <outlet property="operationButton4" destination="Sd8-gz-U5E" id="itH-Ls-dYF"/>
+                        <outlet property="operationButton5" destination="zZU-Dk-U0U" id="Fdf-3K-1hp"/>
+                        <outlet property="operationButton6" destination="JPV-Vj-3P4" id="pcm-tw-egg"/>
+                        <outlet property="operationButton7" destination="E4G-Fi-SG1" id="r0d-4s-dxt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rWj-Xk-Fzn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1058" y="1469"/>
+        </scene>
+    </scenes>
+</document>

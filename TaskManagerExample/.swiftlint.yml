@@ -1,0 +1,44 @@
+warning_threshold: 1
+
+disabled_rules:
+    - todo
+
+included:
+    - ./../..
+
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+    # - Frameworks/SwiftyReceiptValidator
+    - Carthage
+    - Pods
+    - Nyris.IMX.iOS
+    - ./../../TasksManager-copy
+
+file_length:
+    warning: 1500
+    error: 2000
+
+type_body_length:
+    warning: 1000
+    error: 1100
+
+function_body_length:
+    warning: 200
+    error: 300
+
+function_parameter_count:
+    warning: 8
+    error: 10
+
+line_length:
+    warning: 1000
+    error: 1500
+
+cyclomatic_complexity:
+    warning: 30
+    error: 40
+
+identifier_name:
+    max_length: 150
+
+type_name:
+    max_length: 150

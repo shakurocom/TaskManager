@@ -1,5 +1,3 @@
-# Task Manager
-Manager of different background tasks
 ![Shakuro Task Manager](title_image.png)
 <br><br>
 
