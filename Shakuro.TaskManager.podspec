@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = 'Shakuro.TaskManager'
-    s.version          = '0.0.3'
+    s.version          = '0.0.4'
     s.summary          = 'Shakuro Task Manager'
     s.homepage         = 'https://github.com/shakurocom/TaskManager'
     s.license          = { :type => "MIT", :file => "LICENSE.md" }
@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
     s.swift_version    = ['5.1', '5.2', '5.3']
     s.ios.deployment_target = '13.0'
 
-    s.dependency 'Shakuro.HTTPClient', '0.0.3'
+    s.dependency 'Shakuro.HTTPClient', '0.0.11'
     s.dependency 'CommonCryptoModule', '1.0.2'
 
 end
