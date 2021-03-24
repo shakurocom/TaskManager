@@ -5,8 +5,7 @@
 ![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)
 ![License MIT](https://img.shields.io/badge/license-MIT-green.svg)
 
-Manager of different background tasks.
-Implements advanced queue logic that considers operation's priority.
+Task Manager is a Swift library for managing various background tasks during the process of iOS development. It implements advanced queue logic that takes into account the operation's priority for the more efficient development of iOS apps.
 
 - [Requirements](#requirements)
 - [How it works](tmdoc/index.md)
@@ -17,10 +16,7 @@ Implements advanced queue logic that considers operation's priority.
 
 ## Introduction
 
-Task Manager is a that simplifies asynchronous programming, so you can focus on the more important things. Perform many independent asynchronous operations simultaneously with one completion block
-
-Using Operation, OperationQueues.
-Can create your own operations, encapsulating a unit of logic. You can specify and read a few additional properties to further encapsulate logic within the operation itself and keep track of its state. You can also specify a completionBlock that runs when an operation completes.
+Task Manager is an element of an app’s core with the help of which asynchronous operations get performed. It builds dependencies between operations and helps design the correct architecture of their app. It simplifies asynchronous programming, so you can focus on more important things. Perform many independent asynchronous operations simultaneously with one completion block. Every operation has it's own completion block
 
 Shakuro Task Manager Advantages:
 
