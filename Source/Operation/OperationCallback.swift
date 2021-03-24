@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import Shakuro_CommonTypes
 
 /**
  Wrapper for a block, that can be run on a specified queue.

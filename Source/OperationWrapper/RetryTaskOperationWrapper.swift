@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import Shakuro_CommonTypes
 
 /**
  Enhanced wrapper with ability to retry.

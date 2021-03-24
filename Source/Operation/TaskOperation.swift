@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import Shakuro_CommonTypes
 
 public protocol AsyncCompletionProtocol: class {
 
