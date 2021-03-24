@@ -1,5 +1,5 @@
-# Task Manager
 ![Shakuro Task Manager](title_image.png)
+# Task Manager
 <br><br>
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
