@@ -280,7 +280,7 @@ internal class GetStringsFromRandomOrgOperation: BaseOperation<String, GetString
 
     override func main() {
 
-        let parameters = HTTPClient.Parameters.json(parameters: [
+        let parameters = HTTPClient.Parameters.urlQuery(arrayBrakets: false, parameters: [
             "num": "10",
             "len": "10",
             "digits": "on",
@@ -289,28 +289,11 @@ internal class GetStringsFromRandomOrgOperation: BaseOperation<String, GetString
             "rnd": "new"
         ])
 
-//        let parameters = HTTPClient.Parameters.httpBody(arrayBrakets: false, parameters: [
-//            "num": "10",
-//            "len": "10",
-//            "digits": "on",
-//            "unique": "on",
-//            "format": "plain",
-//            "rnd": "new"
-//        ])
-
-//        let parameters = HTTPClient.Parameters.urlQuery(arrayBrakets: false, parameters: [
-//            "num": "10",
-//            "len": "10",
-//            "digits": "on",
-//            "unique": "on",
-//            "format": "plain",
-//            "rnd": "new"
-//        ])
-
         let requestOptions = HTTPClient.RequestOptions(endpoint: RandomOrgAPIEndpoint.strings,
                                                        method: .get,
                                                        parser: StringsParser(),
-                                                       parameters: parameters)
+                                                       parameters: parameters,
+                                                       headers: [HTTPClient.ContentType.textPlain.acceptHeader()])
 
         _ = options.randomOrgClient.sendRequest(options: requestOptions, completion: { [weak self] (result) in
             guard let strongSelf = self else {
