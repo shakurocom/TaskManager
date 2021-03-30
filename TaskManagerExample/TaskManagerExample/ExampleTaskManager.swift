@@ -40,24 +40,16 @@ internal class ExampleTaskManager: TaskManager {
             result = operationInQueue ?? newOperation
 
         case _ as DependsOnAlwaysFailOperation:
-            formDependency(newOperation: newOperation,
-                           queue: enqueuedOperations,
-                           oldOperationType: AlwaysFailInTheEndOperation.self,
-                           isStrongDependency: true)
-            result = newOperation
-
-
-            // add good example for dependency
-//            let operationInQueue = operation(operations: enqueuedOperations, hash: newOperation.operationHash)
-//            if let existingOperation = operationInQueue {
-//                result = existingOperation
-//            } else {
-//                result = newOperation
-//                formDependency(newOperation: newOperation,
-//                               queue: enqueuedOperations,
-//                               oldOperationType: AlwaysFailInTheEndOperation.self,
-//                               isStrongDependency: false)
-//            }
+            let operationInQueue = operation(operations: enqueuedOperations, hash: newOperation.operationHash)
+            if let existingOperation = operationInQueue {
+                result = existingOperation
+            } else {
+                result = newOperation
+                formDependency(newOperation: newOperation,
+                               queue: enqueuedOperations,
+                               oldOperationType: AlwaysFailInTheEndOperation.self,
+                               isStrongDependency: true)
+            }
 
         default:
             result = newOperation
@@ -239,7 +231,7 @@ internal class AlwaysFailInTheEndOperation: BaseOperation<Int, ExampleOperationO
         let stepCount: Int = 10
         for step in 1...stepCount {
             Thread.sleep(forTimeInterval: 0.5)
-            print("AlwaysFailsInTheEndOperation: step \(step) / \(stepCount)")
+            print("AlwaysFailInTheEndOperation: step \(step) / \(stepCount)")
         }
         finish(result: .failure(error: NSError(domain: "ExampleErrorDomain", code: 9001, userInfo: nil)))
     }
