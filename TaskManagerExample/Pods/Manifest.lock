@@ -1,16 +1,33 @@
 PODS:
-  - Alamofire (4.8.1)
+  - Alamofire (5.1.0)
+  - CommonCryptoModule (1.0.2)
+  - Shakuro.CommonTypes (1.0.1)
+  - Shakuro.HTTPClient (1.0.1):
+    - Alamofire (= 5.1.0)
+    - Shakuro.CommonTypes (= 1.0.1)
+  - Shakuro.TaskManager (0.0.8):
+    - CommonCryptoModule (= 1.0.2)
+    - Shakuro.CommonTypes (= 1.0.1)
+    - Shakuro.HTTPClient (= 1.0.1)
 
 DEPENDENCIES:
-  - Alamofire (= 4.8.1)
+  - Shakuro.TaskManager
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
+    - CommonCryptoModule
+    - Shakuro.CommonTypes
+    - Shakuro.HTTPClient
+    - Shakuro.TaskManager
 
 SPEC CHECKSUMS:
-  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  Alamofire: 9d5c5f602928e512395b30950c5984eca840093c
+  CommonCryptoModule: 63a68b57abed79655b3a01011419bf037a05b0a0
+  Shakuro.CommonTypes: a3e61c191ede2556b1a61433c72ab1a3181352ec
+  Shakuro.HTTPClient: d7263db5b811cfd75ed99a29cfab9dd8157d969d
+  Shakuro.TaskManager: c28ecbee03d34bc328fa7d4b280bb25b86539ed4
 
-PODFILE CHECKSUM: 029a5058e499da8ca5aae6479cff4c643fac74e7
+PODFILE CHECKSUM: 6b8a432dcbf86cd2710d94821d985a758b5695e0
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.10.1

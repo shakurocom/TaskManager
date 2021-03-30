@@ -1,0 +1,6 @@
+framework module Shakuro_TaskManager {
+  umbrella header "Shakuro.TaskManager-umbrella.h"
+
+  export *
+  module * { export * }
+}

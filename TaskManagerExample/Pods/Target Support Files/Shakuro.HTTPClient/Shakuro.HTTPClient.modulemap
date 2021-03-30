@@ -1,0 +1,6 @@
+framework module Shakuro_HTTPClient {
+  umbrella header "Shakuro.HTTPClient-umbrella.h"
+
+  export *
+  module * { export * }
+}

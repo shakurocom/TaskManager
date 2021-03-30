@@ -4,6 +4,9 @@
 //
 
 import UIKit
+import Shakuro_TaskManager
+import Shakuro_HTTPClient
+import Shakuro_CommonTypes
 
 private enum MyOperationType: Int {
     case first = 1
@@ -275,26 +278,49 @@ internal struct GetStringsFromRandomOrgOperationOptions: BaseOperationOptions {
 
 internal class GetStringsFromRandomOrgOperation: BaseOperation<String, GetStringsFromRandomOrgOperationOptions> {
 
-    private var request: HTTPClientRequest?
-
     override func main() {
-        var requestOptions = HTTPClient.RequestOptions(
-            method: HTTPClient.RequestMethod.GET,
-            endpoint: RandomOrgAPIEndpoint.strings,
-            parser: StringsParser.self)
-        requestOptions.parameters = [
+
+        let parameters = HTTPClient.Parameters.json(parameters: [
             "num": "10",
             "len": "10",
             "digits": "on",
             "unique": "on",
             "format": "plain",
             "rnd": "new"
-        ]
-        request = options.randomOrgClient.sendRequest(options: requestOptions, completion: { [weak self] (parsedResponse, _) in
+        ])
+
+//        let parameters = HTTPClient.Parameters.httpBody(arrayBrakets: false, parameters: [
+//            "num": "10",
+//            "len": "10",
+//            "digits": "on",
+//            "unique": "on",
+//            "format": "plain",
+//            "rnd": "new"
+//        ])
+
+//        let parameters = HTTPClient.Parameters.urlQuery(arrayBrakets: false, parameters: [
+//            "num": "10",
+//            "len": "10",
+//            "digits": "on",
+//            "unique": "on",
+//            "format": "plain",
+//            "rnd": "new"
+//        ])
+
+        let requestOptions = HTTPClient.RequestOptions(endpoint: RandomOrgAPIEndpoint.strings,
+                                                       method: .get,
+                                                       parser: StringsParser(),
+                                                       parameters: parameters)
+
+        _ = options.randomOrgClient.sendRequest(options: requestOptions, completion: { [weak self] (result) in
             guard let strongSelf = self else {
                 return
             }
-            switch parsedResponse {
+            guard !strongSelf.isCancelled else {
+                strongSelf.finish(result: .cancelled)
+                return
+            }
+            switch result {
             case .success(let networkResult):
                 strongSelf.finish(result: .success(result: networkResult))
             case .cancelled:
@@ -303,10 +329,6 @@ internal class GetStringsFromRandomOrgOperation: BaseOperation<String, GetString
                 strongSelf.finish(result: .failure(error: networkError))
             }
         })
-    }
-
-    override func internalCancel() {
-        request?.cancel()
     }
 
     internal override var priorityValue: Int {
@@ -332,9 +354,8 @@ internal class ExampleTaskManagerViewController: UIViewController {
     private let taskManager: ExampleTaskManager
 
     required init?(coder aDecoder: NSCoder) {
-        let randomOrgClient = HTTPClient(
-            name: "RandomOrgClient",
-            acceptableContentTypes: ["text/plain"])
+        let randomOrgClient = HTTPClient(name: "RandomOrgClient")
+
         taskManager = ExampleTaskManager(
             name: "com.shakuro.iOSToolboxExample.ExampleTaskManager",
             qualityOfService: QualityOfService.utility,
@@ -438,33 +459,75 @@ internal enum RandomOrgAPIEndpoint: HTTPClientAPIEndPoint {
 
 }
 
-internal class StringsParser: HTTPClientParserProtocol {
+//import SwiftyJSON
+//class AppApiClientParser<T>: HTTPClientParser {
+//    typealias ResultType = T
+//    typealias ResponseValueType = JSON
+//
+//    func serializeResponseData(_ responseData: Data?) throws -> JSON {
+//        guard let data = responseData else {
+//            return JSON()
+//        }
+//
+//        let json = try JSON(data: data)
+//        if let message = json["error"]["message"].string {
+//            let code = ServerApiErrorCode(rawValue: json["error"]["code"].intValue) ?? .unknown
+//            throw ServerApiError.fromResponseData(message, code)
+//        }
+//        return json
+//    }
+//
+//    func parseForError(response: HTTPURLResponse?, responseData: Data?) -> Swift.Error? {
+//        guard let statusCode = response?.statusCode, !((200 ... 299) ~= statusCode) else {
+//            return nil
+//        }
+//        return ServerApiError.fromResponse(ServerApiErrorCode(rawValue: statusCode) ?? .unknown)
+//    }
+//
+//    func parseForResult(_ serializedResponse: JSON, response: HTTPURLResponse?) throws -> T {
+//        fatalError()
+//    }
+//}
+
+internal class StringsParser: HTTPClientParser {
+
+//    typealias ResultType = String
+//    typealias ResponseValueType = String
+//
+//    static func generateResponseDataDebugDescription(_ responseData: Data) -> String? {
+//        return serializeResponseData(responseData)
+//    }
+//
+//    static func serializeResponseData(_ responseData: Data) -> String? {
+//        return String(data: responseData, encoding: String.Encoding.utf8)
+//    }
+//
+//    static func parseObject(_ object: String, response: HTTPURLResponse?) -> String? {
+//        return object
+//    }
+//
+//    static func parseError(_ object: String?, response: HTTPURLResponse?, responseData: Data?) -> Error? {
+//        return nil
+//    }
 
     typealias ResultType = String
     typealias ResponseValueType = String
 
-    static func generateResponseDataDebugDescription(_ responseData: Data) -> String? {
-        return serializeResponseData(responseData)
+    func serializeResponseData(_ responseData: Data?) throws -> String {
+        guard let data = responseData else {
+            return ""
+        }
+        return String(data: data, encoding: String.Encoding.utf8) ?? ""
     }
 
-    static func serializeResponseData(_ responseData: Data) -> String? {
-        return String(data: responseData, encoding: String.Encoding.utf8)
-    }
-
-    static func parseObject(_ object: String, response: HTTPURLResponse?) -> String? {
-        return object
-    }
-
-    static func parseError(_ object: String?, response: HTTPURLResponse?, responseData: Data?) -> Error? {
+    func parseForError(response: HTTPURLResponse?, responseData: Data?) -> Swift.Error? {
+        guard let statusCode = response?.statusCode, !((200 ... 299) ~= statusCode) else {
+            return nil
+        }
         return nil
     }
 
-}
-
-private struct VoidSession: HTTPClientUserSession {
-
-    func httpHeaders() -> [String: String] {
-        return [:]
+    func parseForResult(_ serializedResponse: String, response: HTTPURLResponse?) throws -> String {
+        return serializedResponse
     }
-
 }

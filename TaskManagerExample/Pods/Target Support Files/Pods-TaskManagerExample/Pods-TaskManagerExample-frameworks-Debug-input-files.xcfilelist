@@ -1,2 +1,6 @@
 ${PODS_ROOT}/Target Support Files/Pods-TaskManagerExample/Pods-TaskManagerExample-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/CommonCryptoModule/CommonCryptoModule.framework
+${BUILT_PRODUCTS_DIR}/Shakuro.CommonTypes/Shakuro_CommonTypes.framework
+${BUILT_PRODUCTS_DIR}/Shakuro.HTTPClient/Shakuro_HTTPClient.framework
+${BUILT_PRODUCTS_DIR}/Shakuro.TaskManager/Shakuro_TaskManager.framework
