@@ -1,9 +1,5 @@
 //
-//  AppDelegate.swift
-//  TaskManagerExample
 //
-//  Created by Andrey on 30.01.2020.
-//  Copyright © 2020 Shakuro. All rights reserved.
 //
 
 import UIKit
