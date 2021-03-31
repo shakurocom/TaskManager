@@ -10,7 +10,7 @@ Task Manager is a Swift library for managing various background tasks during the
 - [Introduction](#Introduction)
 - [Requirements](#requirements)
 - [Installation](#installation)
-- [Quick start](#quick_start)
+- [Quick start](tmdoc/quick_start.md)
 - [Adding dependency](tmdoc/dependency.md)
 - [Retry handler](tmdoc/retry.md)
 - [License](#license)
@@ -70,76 +70,6 @@ $ pod install
 ### Manually
 
 If you prefer not to use CocoaPods, you can integrate any/all components from the Shakuro iOS Toolbox simply by copying them to your project.
-
-## Creating Task Manager
-
-1. Pick a readable name
-2. Inherit TaskManager
-3. Add your additional services if needed.
-
- ```swift
-internal class ExampleTaskManagerViewController: UIViewController {
-
-    private let taskManager: ExampleTaskManager
-
-    init?(coder aDecoder: NSCoder) {
-        taskManager = TaskManager(
-            name: "com.shakuro.iOSToolboxExample.ExampleTaskManager",
-            qualityOfService: QualityOfService.utility,
-            maxConcurrentOperationCount: 6)
-        super.init(coder: aDecoder)
-    }
-    
-    @IBAction private func operationButton1Tapped() {
-        let task = taskManager.doFirstOperation()
-        task.onComplete(queue: DispatchQueue.main, closure: { (_, result) in
-            print("operationButton1Tapped() completion. result: \(result)")
-        })
-    }
-    
-    func doFirstOperation() -> Task<Int> {
-        return performOperation(operationType: FirstOperation.self, options: ExampleOperationOptions())
-    }
-}
-
-internal class FirstOperation: BaseOperation<Int, ExampleOperationOptions> {
-
-    override func main() {
-        // do your logic
-        if isCancelled {
-            finish(result: .cancelled)
-        } else {
-            finish(result: .success(result: 5)) // 5 - because result type Int (BaseOperation<Int, ExampleOperationOptions>)
-        }
-    }
-
-    internal override var priorityValue: Int {
-        return 0
-    }
-
-    internal override var priorityType: OperationPriorityType {
-        return OperationPriorityType.fifo
-    }
-
-}
-```
-
- Main method of task manager `performGroup`
- It instantiates operations from the group, passes them to `willPerformOperation()` (to resolve dependencies), and then add them to the internal queue. (See  [Adding dependency](tmdoc/dependency.md))
- 
-  ```swift
- func performOperation<ResultType, OptionsType>(operationType: BaseOperation<ResultType, OptionsType>.Type, options: OptionsType) -> Task<ResultType> //or
- func performGroup<ResultType, OptionsType>(_ group: OperationGroup<ResultType, OptionsType>, retryHandler: RetryHandler<ResultType>?) -> Task<ResultType>
-  ```
-  
-## Creating Operation
-
-1. Pick a readable name
-2. Inherit BaseOperation
-3. Put your logic inside main(), don't forget call inside:
-```swift
-func finish(result: CancellableAsyncResult<ResultType>) based on the result after starting your async call
-```
 
 ## License
 
