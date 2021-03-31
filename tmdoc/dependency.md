@@ -1,14 +1,12 @@
 ## Adding dependency
 
-Method to add custom logic for specific operations. Use `type(of:)` or `operationHash` to identify operations in queue.
+A method that adds custom logic for specific operations. Use `type(of:)` or `operationHash` to identify operations in queue.
 Default implementation returns input 'newOperation'.
 
 - newOperation: newly-instantiated operation (from `performOperation()`)
-- operationsInQueue: operations already in queue. Not sorted. Can include operations, that were cancelled or already in progress.
-- returns: This method must return operation that will **actually** be added to queue.
-To enforce uniqueness of an operation return operation, that is already in queue.
-
-- warning: do not add new dependencies to operation that is already in queue.
+- operationsInQueue: operations already in the queue. Not sorted. Can include operations, that were canceled or already in progress.
+- returns: This method must return an operation that will **actually** be added to the queue. To enforce the uniqueness of an operation, return operation, that is already in the queue..
+- warning: do not add new dependencies to an operation that is already in the queue.
 
 ```swift
 // Example: 'sign in' operation is unique (at a time only single 'sign in' operation will be performed)

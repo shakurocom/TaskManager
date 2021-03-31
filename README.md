@@ -7,24 +7,69 @@
 
 Task Manager is a Swift library for managing various background tasks during the process of iOS development. It implements advanced queue logic that takes into account the operation's priority for the more efficient development of iOS apps.
 
+- [Introduction](#Introduction)
 - [Requirements](#requirements)
-- [How it works](tmdoc/index.md)
-- [Additional info](#additional-info)
-- [Retry handler](tmdoc/retry.md)
 - [Installation](#installation)
+- [Quick start](#quick_start)
+- [Adding dependency](tmdoc/dependency.md)
+- [Retry handler](tmdoc/retry.md)
 - [License](#license)
 
 ## Introduction
 
 Task Manager is an element of an app’s core with the help of which asynchronous operations get performed. It builds dependencies between operations and helps design the correct architecture of their app. It simplifies asynchronous programming, so you can focus on more important things. Perform many independent asynchronous operations simultaneously with one completion block. Every operation has it's own completion block
 
-Shakuro Task Manager Advantages:
+## How it works
 
-1. Used Base operation. You can create your own operations, that encapsulate a unit of logic, easily creating and overriding. A task can have a completion block (onComplete():) and pass all calls to operation wrapper.
+![](resources/TaskManager.svg)
+
+Using Operation and OperationQueues you can create your own operations, encapsulating a unit of logic. You can specify and read a few additional properties to further encapsulate logic within the operation itself and keep track of its state. You can also specify a completionBlock that runs when an operation completes.
+
+#Shakuro Task Manager Advantages:
+
+1. Used Base operation. You can create your own operations that encapsulate a unit of logic, easily creating and overriding. A task can have a completion block (onComplete():) and pass all calls to the operation wrapper.
 2. Operation Dependency. NSOperations are easy when it comes to task dependency management. It resolves dependencies between operations.
 3. Added typing. You can request any type you want.
 4. The ability to retry asynchronous operations.
-5. It's transparent, flexible and easy.
+5. It's transparent, flexible, and easy.
+
+## Requirements
+
+- iOS 13.0+
+- Xcode 11.0+
+- Swift 5.0+
+
+## Installation
+
+### CocoaPods
+
+[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
+
+```bash
+$ gem install cocoapods
+```
+
+To integrate TaskManager into your Xcode project, specify it in your `Podfile`:
+
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '13.0'
+use_frameworks!
+
+target '<Your Target Name>' do
+    pod 'Shakuro.TaskManager'
+end
+```
+
+Then, run the following command:
+
+```bash
+$ pod install
+```
+
+### Manually
+
+If you prefer not to use CocoaPods, you can integrate any/all components from the Shakuro iOS Toolbox simply by copying them to your project.
 
 ## Creating Task Manager
 
@@ -95,50 +140,6 @@ internal class FirstOperation: BaseOperation<Int, ExampleOperationOptions> {
 ```swift
 func finish(result: CancellableAsyncResult<ResultType>) based on the result after starting your async call
 ```
-
-## Additional info
-
-- [Quick start](tmdoc/quick_start.md)
-- [Initialization, creating  and performing operation](tmdoc/sample.md)
-- [Adding dependency](tmdoc/dependency.md)
-
-## Requirements
-
-- iOS 13.0+
-- Xcode 9.2+
-- Swift 5.0+
-
-## Installation
-
-### CocoaPods
-
-[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
-
-```bash
-$ gem install cocoapods
-```
-
-To integrate Toolbox into your Xcode project, specify it in your `Podfile`:
-
-```ruby
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '13.0'
-use_frameworks!
-
-target '<Your Target Name>' do
-    pod 'Shakuro.TaskManager', '0.0.5'
-end
-```
-
-Then, run the following command:
-
-```bash
-$ pod install
-```
-
-### Manually
-
-If you prefer not to use CocoaPods, you can integrate any/all components from the Shakuro iOS Toolbox simply by copying them to your project.
 
 ## License
 

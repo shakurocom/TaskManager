@@ -1,6 +1,6 @@
 ## Retry handler
 
-RetryHandler - bunch of blocks to handle retry logic. Provides the ability to reattempt a task if error occured.
+RetryHandler — a bunch of blocks to handle retry logic. Provides the ability to reattempt a task if an error occurs.
 
 ```swift
  func retryAlwaysFailThreeTimes() -> Task<Int> {
@@ -57,4 +57,4 @@ class AlwaysFailInTheEndOperation: BaseOperation<Int, ExampleOperationOptions> {
 ```
 ## Callbacks
 
-You can set willRetry and didRetry to get notified before or after the retry handler run. 
+You can set willRetry and didRetry to get notified before or after the retry handler run.
