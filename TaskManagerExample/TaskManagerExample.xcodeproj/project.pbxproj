@@ -33,6 +33,8 @@
 		A5FFD86C2614320800ABDE31 /* GetStringsFromRandomOrgOperationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FFD86B2614320800ABDE31 /* GetStringsFromRandomOrgOperationOptions.swift */; };
 		A5FFD870261432B100ABDE31 /* GetStringsFromRandomOrgOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FFD86F261432B100ABDE31 /* GetStringsFromRandomOrgOperation.swift */; };
 		A5FFD8732614335000ABDE31 /* ExampleTaskManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FFD8722614335000ABDE31 /* ExampleTaskManagerViewController.swift */; };
+		A5FFD87C261436F300ABDE31 /* RandomOrgAPIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FFD87B261436F300ABDE31 /* RandomOrgAPIEndpoint.swift */; };
+		A5FFD8802614372800ABDE31 /* StringsParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FFD87F2614372800ABDE31 /* StringsParser.swift */; };
 		B5253C3DBA3350C1935E7F77 /* Pods_TaskManagerExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D10F35734B8DF214371029BF /* Pods_TaskManagerExample.framework */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +68,8 @@
 		A5FFD86B2614320800ABDE31 /* GetStringsFromRandomOrgOperationOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStringsFromRandomOrgOperationOptions.swift; sourceTree = "<group>"; };
 		A5FFD86F261432B100ABDE31 /* GetStringsFromRandomOrgOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStringsFromRandomOrgOperation.swift; sourceTree = "<group>"; };
 		A5FFD8722614335000ABDE31 /* ExampleTaskManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTaskManagerViewController.swift; sourceTree = "<group>"; };
+		A5FFD87B261436F300ABDE31 /* RandomOrgAPIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomOrgAPIEndpoint.swift; sourceTree = "<group>"; };
+		A5FFD87F2614372800ABDE31 /* StringsParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringsParser.swift; sourceTree = "<group>"; };
 		D10F35734B8DF214371029BF /* Pods_TaskManagerExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TaskManagerExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB29DFEFC137FC06ECFB52CB /* Pods-TaskManagerExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskManagerExample.release.xcconfig"; path = "Target Support Files/Pods-TaskManagerExample/Pods-TaskManagerExample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -127,8 +131,9 @@
 		5558B9AF23E2AF4C00DDA0B7 /* TaskManagerExample */ = {
 			isa = PBXGroup;
 			children = (
-				A5FFD869261431B300ABDE31 /* TaskManager */,
 				A5FFD875261434AB00ABDE31 /* UI */,
+				A5FFD869261431B300ABDE31 /* TaskManager */,
+				A5FFD87A261436CC00ABDE31 /* Networking */,
 				A5FFD876261434D100ABDE31 /* Resources */,
 				5558B9B023E2AF4C00DDA0B7 /* AppDelegate.swift */,
 				5558B9B223E2AF4C00DDA0B7 /* SceneDelegate.swift */,
@@ -180,6 +185,15 @@
 				5558B9B623E2AF4C00DDA0B7 /* Main.storyboard */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		A5FFD87A261436CC00ABDE31 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				A5FFD87B261436F300ABDE31 /* RandomOrgAPIEndpoint.swift */,
+				A5FFD87F2614372800ABDE31 /* StringsParser.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		CBE9ACE807F8F19E5A398848 /* Pods */ = {
@@ -315,6 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5FFD85B2614307800ABDE31 /* UniqueOperation.swift in Sources */,
+				A5FFD8802614372800ABDE31 /* StringsParser.swift in Sources */,
 				A5FFD85826142F8F00ABDE31 /* FirstOperation.swift in Sources */,
 				A5FFD85526142F0100ABDE31 /* ExampleTaskManager+Public.swift in Sources */,
 				A5FFD8672614314300ABDE31 /* DependsOnAlwaysFailOperation.swift in Sources */,
@@ -323,6 +338,7 @@
 				5558B9B123E2AF4C00DDA0B7 /* AppDelegate.swift in Sources */,
 				5558B9C523E2B09500DDA0B7 /* ExampleTaskManager.swift in Sources */,
 				A5FFD870261432B100ABDE31 /* GetStringsFromRandomOrgOperation.swift in Sources */,
+				A5FFD87C261436F300ABDE31 /* RandomOrgAPIEndpoint.swift in Sources */,
 				5558B9B323E2AF4C00DDA0B7 /* SceneDelegate.swift in Sources */,
 				5558BA1123E2B75400DDA0B7 /* Lock+Execute.swift in Sources */,
 				A5FFD85226142DC700ABDE31 /* ExampleOperationOptions.swift in Sources */,
