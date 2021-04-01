@@ -15,8 +15,6 @@
 		5558B9BA23E2AF5000DDA0B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5558B9B923E2AF5000DDA0B7 /* Assets.xcassets */; };
 		5558B9BD23E2AF5000DDA0B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5558B9BB23E2AF5000DDA0B7 /* LaunchScreen.storyboard */; };
 		5558B9C523E2B09500DDA0B7 /* ExampleTaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5558B9C423E2B09500DDA0B7 /* ExampleTaskManager.swift */; };
-		5560C0EA24878C5F006ACEC0 /* typing.md in Resources */ = {isa = PBXBuildFile; fileRef = 5560C0E924878C5F006ACEC0 /* typing.md */; };
-		55636D232486616700EA0562 /* sample.md in Resources */ = {isa = PBXBuildFile; fileRef = 55636D222486616700EA0562 /* sample.md */; };
 		55836F39261459B100556739 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 55836F38261459B000556739 /* .swiftlint.yml */; };
 		A5FFD85226142DC700ABDE31 /* ExampleOperationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FFD85126142DC700ABDE31 /* ExampleOperationOptions.swift */; };
 		A5FFD85526142F0100ABDE31 /* ExampleTaskManager+Public.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FFD85426142F0100ABDE31 /* ExampleTaskManager+Public.swift */; };
@@ -46,8 +44,6 @@
 		5558B9BC23E2AF5000DDA0B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5558B9BE23E2AF5000DDA0B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5558B9C423E2B09500DDA0B7 /* ExampleTaskManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleTaskManager.swift; sourceTree = "<group>"; };
-		5560C0E924878C5F006ACEC0 /* typing.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = typing.md; path = ../../tmdoc/typing.md; sourceTree = "<group>"; };
-		55636D222486616700EA0562 /* sample.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = sample.md; path = ../../tmdoc/sample.md; sourceTree = "<group>"; };
 		55836F38261459B000556739 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; name = .swiftlint.yml; path = ../../../.swiftlint.yml; sourceTree = "<group>"; };
 		A5FFD85126142DC700ABDE31 /* ExampleOperationOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleOperationOptions.swift; sourceTree = "<group>"; };
 		A5FFD85426142F0100ABDE31 /* ExampleTaskManager+Public.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExampleTaskManager+Public.swift"; sourceTree = "<group>"; };
@@ -90,8 +86,6 @@
 			isa = PBXGroup;
 			children = (
 				55566F312473B1FB007E93DC /* README.md */,
-				55636D222486616700EA0562 /* sample.md */,
-				5560C0E924878C5F006ACEC0 /* typing.md */,
 				55566F302473B1FB007E93DC /* Shakuro.TaskManager.podspec */,
 			);
 			path = Configs;
@@ -257,8 +251,6 @@
 				55566F322473B1FB007E93DC /* Shakuro.TaskManager.podspec in Resources */,
 				5558B9BD23E2AF5000DDA0B7 /* LaunchScreen.storyboard in Resources */,
 				55566F332473B1FB007E93DC /* README.md in Resources */,
-				55636D232486616700EA0562 /* sample.md in Resources */,
-				5560C0EA24878C5F006ACEC0 /* typing.md in Resources */,
 				5558B9BA23E2AF5000DDA0B7 /* Assets.xcassets in Resources */,
 				5558B9B823E2AF4C00DDA0B7 /* Main.storyboard in Resources */,
 			);
