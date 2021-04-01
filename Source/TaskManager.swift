@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import Shakuro_CommonTypes
 
 /**
  Manager of different background tasks.
