@@ -11,7 +11,7 @@ Task Manager is a Swift library for managing various background tasks during the
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Quick start](#quick-start)
-- [Initialization, creating and performing an operation](#initialization,-creating-and-performing-an-operation)
+- [Initialization, creating and performing an operation](#initialization-creating-and-performing-an-operation)
 - [Adding dependency](#adding-dependency)
 - [Retry handler](#retry-handler)
 - [License](#license)
