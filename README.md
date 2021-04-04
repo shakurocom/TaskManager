@@ -5,9 +5,12 @@
 ![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)
 ![License MIT](https://img.shields.io/badge/license-MIT-green.svg)
 
-Task Manager is a Swift library for managing various background tasks during the process of iOS development. It implements advanced queue logic that takes into account the operation's priority for the more efficient development of iOS apps.
+Task Manager is an element of an app’s core which manages asynchronous operations.  It implements advanced queue logic that takes into account the operation's dependencies and priorities.
 
-- [Introduction](#Introduction)
+Interactor -> Options -> Task Manager (operations + dependencies inside) -> HTTP Client + Database -> Retry if error (for example session expired error) -> Completion block inside Interactor with typed result.
+
+![](TaskManager.png)
+
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Quick start](#quick-start)
@@ -16,27 +19,9 @@ Task Manager is a Swift library for managing various background tasks during the
 - [Retry handler](#retry-handler)
 - [License](#license)
 
-## Introduction
-
-Task Manager is an element of an app’s core with the help of which asynchronous operations get performed. It builds dependencies between operations and helps design the correct architecture of their app. It simplifies asynchronous programming, so you can focus on more important things. Every operation has it's own completion block.
-
-## How it works
-
-![](TaskManager.png)
-
-Using Operation and OperationQueues you can create your own operations, encapsulating a unit of logic. You can specify and read a few additional properties to further encapsulate logic within the operation itself and keep track of its state. You can also specify a completionBlock that runs when an operation completes.
-
-#Shakuro Task Manager Advantages:
-
-1. Used Base operation. You can create your own operations that encapsulate a unit of logic, easily creating and overriding. A task can have a completion block (onComplete():) and pass all calls to the operation wrapper.
-2. Operation Dependency. NSOperations are easy when it comes to task dependency management. It resolves dependencies between operations.
-3. Added typing. You can request any type you want.
-4. The ability to retry asynchronous operations.
-5. It's transparent, flexible, and easy.
-
 ## Requirements
 
-- iOS 13.0+
+- iOS 11.0+
 - Xcode 11.0+
 - Swift 5.0+
 
@@ -44,17 +29,11 @@ Using Operation and OperationQueues you can create your own operations, encapsul
 
 ### CocoaPods
 
-[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
-
-```bash
-$ gem install cocoapods
-```
-
-To integrate TaskManager into your Xcode project, specify it in your `Podfile`:
+To integrate TaskManager into your Xcode project with CocoaPods, specify it in your `Podfile`:
 
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '13.0'
+platform :ios, '11.0'
 use_frameworks!
 
 target '<Your Target Name>' do
@@ -224,9 +203,6 @@ class AlwaysFailInTheEndOperation: BaseOperation<Int, ExampleOperationOptions> {
     }
 }
 ```
-## Callbacks
-
-You can set willRetry and didRetry to get notified before or after the retry handler run.
 
 ## License
 
