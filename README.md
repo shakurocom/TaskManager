@@ -13,10 +13,7 @@ Interactor -> Options -> Task Manager (operations + dependencies inside) -> HTTP
 
 - [Requirements](#requirements)
 - [Installation](#installation)
-- [Quick start](#quick-start)
-- [Initialization, creating and performing an operation](#initialization-creating-and-performing-an-operation)
-- [Adding dependency](#adding-dependency)
-- [Retry handler](#retry-handler)
+- [Usage](#usage)
 - [License](#license)
 
 ## Requirements
@@ -59,7 +56,7 @@ Have a look into [TaskManagerExample](https://github.com/shakurocom/TaskManager/
 
 Operation should have `operationHash` defined if it's work rely only on it's options. Hash is used in `.willPerformOperation()` to construct dependencies.
 
-Dependencies between operations should be carefully considered. `.willPerformOperation()` should return already existing in queue (old) operation instead of a new one if both operations (old & new) are equal from business logic perspective. This will result in only single operation being executed with multiple completions.
+Dependencies between operations should be carefully considered. `.willPerformOperation()` should return already existing in queue (old) operation instead of a new one if both operations (old & new) are equal from business logic perspective. This will result in only single operation being executed with multiple completion callbacks.
 
 Each task (operation or group of operations) can have a `retryHandler` to perform a retry under specified conditions. It is a perfect tool if you are dealing with unreliable server. 
 
