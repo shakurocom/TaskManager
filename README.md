@@ -32,13 +32,7 @@ Interactor -> Options -> Task Manager (operations + dependencies inside) -> HTTP
 To integrate TaskManager into your Xcode project with CocoaPods, specify it in your `Podfile`:
 
 ```ruby
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '11.0'
-use_frameworks!
-
-target '<Your Target Name>' do
-    pod 'Shakuro.TaskManager'
-end
+pod 'Shakuro.TaskManager'
 ```
 
 Then, run the following command:
@@ -49,161 +43,27 @@ $ pod install
 
 ### Manually
 
-If you prefer not to use CocoaPods, you can integrate any/all components from the Shakuro iOS Toolbox simply by copying them to your project.
+If you prefer not to use CocoaPods, you can integrate Shakuro.TaskManager simply by copying them to your project.
 
-## Quick Start
+## Usage
 
-1. To create task manager just subclass TaskManager and add http client that will be used in operations to communicate with server:
+Main purpose of TaskManager component is to incapsulate work with server, database and other background operations into unit-like operations or tasks. This will help separate business logic from UI and reuse operations across the app.
 
-```swift
-internal class ExampleTaskManager: TaskManager {
+1. Create couple of operations by subclassing `BaseOperation`. Operation should be a complete and independent unit of business logic. 
+2. Subclass `TaskManager` and override `.willPerformOperation()`. Dependencies between operations should be defined here. It is a good idea to create two separate `TaskManager` objects/subclasses: one to handle auth-related tasks and second - for all other work.
+3. Start your tasks by calling `.performOperation()` or `.performGroup()` on `TaskManager`. Completions can be used to handle results.
 
-    private let randomOrgClient: HTTPClient
+Have a look into [TaskManagerExample](https://github.com/shakurocom/TaskManager/tree/master/TaskManagerExample)
 
-    init(name: String,
-         qualityOfService: QualityOfService,
-         maxConcurrentOperationCount: Int,
-         randomOrgClient: HTTPClient) {
-         
-         self.randomOrgClient = randomOrgClient
-         super.init(name: name,
-         qualityOfService: qualityOfService,
-         maxConcurrentOperationCount: maxConcurrentOperationCount)
-    }
-}
+### Important notes
 
-```
-2. Creating your operation:
+Operation should have `operationHash` defined if it's work rely only on it's options. Hash is used in `.willPerformOperation()` to construct dependencies.
 
-To create your operation just subclass BaseOperation<Int, ExampleOperationOptions>, where Int is type of result and ExampleOperationOptions is an input data for operation.
+Dependencies between operations should be carefully considered. `.willPerformOperation()` should return already existing in queue (old) operation instead of a new one if both operations (old & new) are equal from business logic perspective. This will result in only single operation being executed with multiple completions.
 
-## Initialization, creating and performing an operation
-
-You can request any type you want. In class FirstOperation in the example, it shows that ResultType should be Int.
-
-## Adding dependency
-
-A method that adds custom logic for specific operations. Use `type(of:)` or `operationHash` to identify operations in queue.
-Default implementation returns input 'newOperation'.
-
-- newOperation: newly-instantiated operation (from `performOperation()`)
-- operationsInQueue: operations already in the queue. Not sorted. Can include operations, that were canceled or already in progress.
-- returns: This method must return an operation that will **actually** be added to the queue. To enforce the uniqueness of an operation, return operation, that is already in the queue..
-- warning: do not add new dependencies to an operation that is already in the queue.
-
-```swift
-// Example: 'sign in' operation is unique (at a time only single 'sign in' operation will be performed)
-
-    let result: TaskManager.OperationInQueue
-    switch newOperation {
-    case let _ as SignInOperation:
-        let signInInQueue = operationsInQueue.first(where: { (operation: Operation) -> Bool in
-            return operation.operationHash == newOperation.operationHash
-        })
-        if let actualSignIn = signInInQueue {
-            result = signInInQueue
-        } else {
-            result = newOperation
-        }
-        default:
-            result = newOperation
-        }
-        return result
-```
-
-```swift
-class ExampleTaskManager: TaskManager {
-
-    private let randomOrgClient: HTTPClient
-
-    init(name aName: String, qualityOfService: QualityOfService, maxConcurrentOperationCount: Int, randomOrgClient aRandomOrgClient: HTTPClient) {
-        randomOrgClient = aRandomOrgClient
-        super.init(name: aName, qualityOfService: qualityOfService, maxConcurrentOperationCount: maxConcurrentOperationCount)
-    }
-
-    // Adding dependencings to operations
-   
-    override func willPerformOperation(newOperation: TaskManager.OperationInQueue,
-                                       enqueuedOperations: [TaskManager.OperationInQueue]) -> TaskManager.OperationInQueue {
-        let result: TaskManager.OperationInQueue
-        switch newOperation {
-        case _ as UniqueOperation:
-            let uniqueInQueue = enqueuedOperations.first(where: { $0.operationHash == newOperation.operationHash })
-            result = uniqueInQueue ?? newOperation
-
-        case _ as DependsOnAlwaysFailOperation:
-            let dependencyInQueue = enqueuedOperations.first(where: { $0 is AlwaysFailInTheEndOperation })
-            if let actualDependency = dependencyInQueue {
-                newOperation.addDependency(operation: actualDependency, isStrongDependency: true)
-            }
-            result = newOperation
-
-        default:
-            result = newOperation
-        }
-        return result
-    }
-}
-```
-
-## Retry handler
-
-RetryHandler — a bunch of blocks to handle retry logic. Provides the ability to reattempt a task if an error occurs.
-
-```swift
- func retryAlwaysFailThreeTimes() -> Task<Int> {
-    let retryCountMax = 3
-    return doAlwaysFailInTheEndOperation(retryHandler: RetryHandler(
-        retryCondition: { (retryNumber, taskResult) -> Bool in
-            switch taskResult {
-            case .success:
-                return false
-            case .failure:
-                // process error
-                if retryNumber < retryCountMax {
-                    print("retrying...")
-                    return true
-                } else {
-                    print("retrying no more.")
-                    return false
-                }
-            }
-    },
-        willRetry: { print("will retry: attempt: \($0) result: \($1)") },
-        didRetry: { print("did retry: attempt: \($0) result: \($1)") })
-    )
-}
-
-func doAlwaysFailInTheEndOperation(retryHandler: RetryHandler<Int>?) -> Task<Int> {
-       let group = OperationGroup(mainOperationType: AlwaysFailInTheEndOperation.self, options: ExampleOperationOptions())
-       group.addSecondaryOperation(operationType: AlwaysFailInTheEndOperation.self, options: ExampleOperationOptions())
-       group.addSecondaryOperation(operationType: AlwaysFailInTheEndOperation.self, options: ExampleOperationOptions())
-       return performGroup(group, retryHandler: retryHandler)
-}
-
-// Operation that will allways fail
-
-class AlwaysFailInTheEndOperation: BaseOperation<Int, ExampleOperationOptions> {
-
-    override func main() {
-        let stepCount: Int = 10
-        for step in 1...stepCount {
-            Thread.sleep(forTimeInterval: 0.5)
-            print("AlwaysFailsInTheEndOperation: step \(step) / \(stepCount)")
-        }
-        finish(result: .failure(error: NSError(domain: "ExampleErrorDomain", code: 9001, userInfo: nil)))
-    }
-
-    internal override var priorityValue: Int {
-        return 1
-    }
-
-    internal override var priorityType: OperationPriorityType {
-        return OperationPriorityType.fifo
-    }
-}
-```
+Each task (operation or group of operations) can have a `retryHandler` to perform a retry under specified conditions. It is a perfect tool if you are dealing with unreliable server. 
 
 ## License
 
-Shakuro iOS Toolbox is released under the MIT license. [See LICENSE](https://github.com/shakurocom/iOS_Toolbox/blob/master/LICENSE) for details.
+Shakuro.TaskManager is released under the MIT license. [See LICENSE](https://github.com/shakurocom/TaskManager/blob/master/LICENSE) for details.
+
