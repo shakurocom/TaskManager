@@ -10,7 +10,7 @@
 - [Usage](#usage)
 - [License](#license)
 
-Task Manager is an element of an app’s core which manages asynchronous operations.  It implements advanced queue logic that takes into account the operation's dependencies and priorities.
+Task manager is the Swift library designed to mange asynchronous operations.
 Main purpose of TaskManager component is to incapsulate work with server, database and other background operations into unit-like operations or tasks. This will help separate business logic from UI and reuse operations across the app.
 
 ![](task_manager_concept.png)
