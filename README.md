@@ -11,10 +11,9 @@
 - [License](#license)
 
 Task Manager is an element of an app’s core which manages asynchronous operations.  It implements advanced queue logic that takes into account the operation's dependencies and priorities.
+Main purpose of TaskManager component is to incapsulate work with server, database and other background operations into unit-like operations or tasks. This will help separate business logic from UI and reuse operations across the app.
 
-Interactor -> Options -> Task Manager (operations + dependencies inside) -> HTTP Client + Database -> Retry if error (for example session expired error) -> Completion block inside Interactor with typed result.
-
-![](TaskManager.png)
+![](task_manager_concept.png)
 
 ## Requirements
 
@@ -44,8 +43,6 @@ If you prefer not to use CocoaPods, you can integrate Shakuro.TaskManager simply
 
 ## Usage
 
-Main purpose of TaskManager component is to incapsulate work with server, database and other background operations into unit-like operations or tasks. This will help separate business logic from UI and reuse operations across the app.
-
 1. Create couple of operations by subclassing `BaseOperation`. Operation should be a complete and independent unit of business logic. 
 2. Subclass `TaskManager` and override `.willPerformOperation()`. Dependencies between operations should be defined here. It is a good idea to create two separate `TaskManager` objects/subclasses: one to handle auth-related tasks and second - for all other work.
 3. Start your tasks by calling `.performOperation()` or `.performGroup()` on `TaskManager`. Completions can be used to handle results.
@@ -58,7 +55,9 @@ Operation should have `operationHash` defined if it's work rely only on it's opt
 
 Dependencies between operations should be carefully considered. `.willPerformOperation()` should return already existing in queue (old) operation instead of a new one if both operations (old & new) are equal from business logic perspective. This will result in only single operation being executed with multiple completion callbacks.
 
-Each task (operation or group of operations) can have a `retryHandler` to perform a retry under specified conditions. It is a perfect tool if you are dealing with unreliable server. 
+Each task (operation or group of operations) can have a `retryHandler` to perform a retry under specified conditions. It is a perfect tool if you are dealing with unreliable server.
+
+Usual flow: Interactor -> Options -> Task Manager (operations + dependencies inside) -> HTTP Client + Database -> Retry if error (for example session expired error) -> Completion block inside Interactor with typed result.
 
 ## License
 
