@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		55566F322473B1FB007E93DC /* Shakuro.TaskManager.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 55566F302473B1FB007E93DC /* Shakuro.TaskManager.podspec */; };
-		55566F332473B1FB007E93DC /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 55566F312473B1FB007E93DC /* README.md */; };
 		5558B9B123E2AF4C00DDA0B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5558B9B023E2AF4C00DDA0B7 /* AppDelegate.swift */; };
 		5558B9B323E2AF4C00DDA0B7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5558B9B223E2AF4C00DDA0B7 /* SceneDelegate.swift */; };
 		5558B9B823E2AF4C00DDA0B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5558B9B623E2AF4C00DDA0B7 /* Main.storyboard */; };
@@ -34,8 +32,6 @@
 
 /* Begin PBXFileReference section */
 		352F793A11AC9E4A0DA13F0C /* Pods-TaskManagerExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskManagerExample.debug.xcconfig"; path = "Target Support Files/Pods-TaskManagerExample/Pods-TaskManagerExample.debug.xcconfig"; sourceTree = "<group>"; };
-		55566F302473B1FB007E93DC /* Shakuro.TaskManager.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Shakuro.TaskManager.podspec; path = ../../Shakuro.TaskManager.podspec; sourceTree = "<group>"; };
-		55566F312473B1FB007E93DC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
 		5558B9AD23E2AF4C00DDA0B7 /* TaskManagerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskManagerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5558B9B023E2AF4C00DDA0B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5558B9B223E2AF4C00DDA0B7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,22 +78,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		55566F2B2473B189007E93DC /* Configs */ = {
-			isa = PBXGroup;
-			children = (
-				55566F312473B1FB007E93DC /* README.md */,
-				55566F302473B1FB007E93DC /* Shakuro.TaskManager.podspec */,
-			);
-			path = Configs;
-			sourceTree = "<group>";
-		};
 		5558B9A423E2AF4C00DDA0B7 = {
 			isa = PBXGroup;
 			children = (
 				5558B9AF23E2AF4C00DDA0B7 /* TaskManagerExample */,
 				5558B9AE23E2AF4C00DDA0B7 /* Products */,
 				CBE9ACE807F8F19E5A398848 /* Pods */,
-				55566F2B2473B189007E93DC /* Configs */,
 				447600ECA8DA6A95576F4DAB /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -248,9 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55836F39261459B100556739 /* .swiftlint.yml in Resources */,
-				55566F322473B1FB007E93DC /* Shakuro.TaskManager.podspec in Resources */,
 				5558B9BD23E2AF5000DDA0B7 /* LaunchScreen.storyboard in Resources */,
-				55566F332473B1FB007E93DC /* README.md in Resources */,
 				5558B9BA23E2AF5000DDA0B7 /* Assets.xcassets in Resources */,
 				5558B9B823E2AF4C00DDA0B7 /* Main.storyboard in Resources */,
 			);
