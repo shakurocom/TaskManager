@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = 'Shakuro.TaskManager'
-    s.version          = '1.0.1'
+    s.version          = '1.0.0'
     s.summary          = 'Shakuro Task Manager'
     s.homepage         = 'https://github.com/shakurocom/TaskManager'
     s.license          = { :type => "MIT", :file => "LICENSE.md" }
