@@ -1,16 +1,17 @@
 PODS:
   - Alamofire (5.1.0)
   - CommonCryptoModule (1.0.2)
-  - Shakuro.CommonTypes (1.0.1)
-  - Shakuro.HTTPClient (1.0.1):
-    - Alamofire (= 5.1.0)
-    - Shakuro.CommonTypes (= 1.0.1)
-  - Shakuro.TaskManager (0.0.8):
+  - Shakuro.CommonTypes (1.0.3):
     - CommonCryptoModule (= 1.0.2)
-    - Shakuro.CommonTypes (= 1.0.1)
-    - Shakuro.HTTPClient (= 1.0.1)
+  - Shakuro.HTTPClient (1.0.3):
+    - Alamofire (= 5.1.0)
+    - Shakuro.CommonTypes (= 1.0.3)
+  - Shakuro.TaskManager (1.0.0):
+    - CommonCryptoModule (= 1.0.2)
+    - Shakuro.CommonTypes (= 1.0.3)
 
 DEPENDENCIES:
+  - Shakuro.HTTPClient
   - Shakuro.TaskManager
 
 SPEC REPOS:
@@ -24,10 +25,10 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: 9d5c5f602928e512395b30950c5984eca840093c
   CommonCryptoModule: 63a68b57abed79655b3a01011419bf037a05b0a0
-  Shakuro.CommonTypes: a3e61c191ede2556b1a61433c72ab1a3181352ec
-  Shakuro.HTTPClient: d7263db5b811cfd75ed99a29cfab9dd8157d969d
-  Shakuro.TaskManager: c28ecbee03d34bc328fa7d4b280bb25b86539ed4
+  Shakuro.CommonTypes: 705a0ee043a554fccaf1ff24bea9f9af4ea3f06e
+  Shakuro.HTTPClient: 3ade92b42d297681e9fd10f20d618af5edd4c7ca
+  Shakuro.TaskManager: c8fd8b65dcef0386c23c9ddd48014607f990e030
 
-PODFILE CHECKSUM: a8f88bf83b37dd1bd3cdf9943ee0db31287aa036
+PODFILE CHECKSUM: 2f48e1cac9782b4d0145d4523652c5ec49f3902b
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.8.3

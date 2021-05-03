@@ -5,129 +5,29 @@
 ![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)
 ![License MIT](https://img.shields.io/badge/license-MIT-green.svg)
 
-Task Manager is a Swift library for managing various background tasks during the process of iOS development. It implements advanced queue logic that takes into account the operation's priority for the more efficient development of iOS apps.
-
 - [Requirements](#requirements)
-- [How it works](tmdoc/index.md)
-- [Additional info](#additional-info)
-- [Retry handler](tmdoc/retry.md)
 - [Installation](#installation)
+- [Usage](#usage)
 - [License](#license)
 
-## Introduction
+Task Manager is a Swift library designed to manage asynchronous operations. The main purpose of the Task Manager component is to encapsulate work with the server, database, and other background operations into unit-like operations or tasks. This helps to separate business logic from UI and reuse operations across the app.
 
-Task Manager is an element of an app’s core with the help of which asynchronous operations get performed. It builds dependencies between operations and helps design the correct architecture of their app. It simplifies asynchronous programming, so you can focus on more important things. Perform many independent asynchronous operations simultaneously with one completion block. Every operation has it's own completion block
-
-Shakuro Task Manager Advantages:
-
-1. Used Base operation. You can create your own operations, that encapsulate a unit of logic, easily creating and overriding. A task can have a completion block (onComplete():) and pass all calls to operation wrapper.
-2. Operation Dependency. NSOperations are easy when it comes to task dependency management. It resolves dependencies between operations.
-3. Added typing. You can request any type you want.
-4. The ability to retry asynchronous operations.
-5. It's transparent, flexible and easy.
-
-## Creating Task Manager
-
-1. Pick a readable name
-2. Inherit TaskManager
-3. Add your additional services if needed.
-
- ```swift
-internal class ExampleTaskManagerViewController: UIViewController {
-
-    private let taskManager: ExampleTaskManager
-
-    init?(coder aDecoder: NSCoder) {
-        taskManager = TaskManager(
-            name: "com.shakuro.iOSToolboxExample.ExampleTaskManager",
-            qualityOfService: QualityOfService.utility,
-            maxConcurrentOperationCount: 6)
-        super.init(coder: aDecoder)
-    }
-    
-    @IBAction private func operationButton1Tapped() {
-        let task = taskManager.doFirstOperation()
-        task.onComplete(queue: DispatchQueue.main, closure: { (_, result) in
-            print("operationButton1Tapped() completion. result: \(result)")
-        })
-    }
-    
-    func doFirstOperation() -> Task<Int> {
-        return performOperation(operationType: FirstOperation.self, options: ExampleOperationOptions())
-    }
-}
-
-internal class FirstOperation: BaseOperation<Int, ExampleOperationOptions> {
-
-    override func main() {
-        // do your logic
-        if isCancelled {
-            finish(result: .cancelled)
-        } else {
-            finish(result: .success(result: 5)) // 5 - because result type Int (BaseOperation<Int, ExampleOperationOptions>)
-        }
-    }
-
-    internal override var priorityValue: Int {
-        return 0
-    }
-
-    internal override var priorityType: OperationPriorityType {
-        return OperationPriorityType.fifo
-    }
-
-}
-```
-
- Main method of task manager `performGroup`
- It instantiates operations from the group, passes them to `willPerformOperation()` (to resolve dependencies), and then add them to the internal queue. (See  [Adding dependency](tmdoc/dependency.md))
- 
-  ```swift
- func performOperation<ResultType, OptionsType>(operationType: BaseOperation<ResultType, OptionsType>.Type, options: OptionsType) -> Task<ResultType> //or
- func performGroup<ResultType, OptionsType>(_ group: OperationGroup<ResultType, OptionsType>, retryHandler: RetryHandler<ResultType>?) -> Task<ResultType>
-  ```
-  
-## Creating Operation
-
-1. Pick a readable name
-2. Inherit BaseOperation
-3. Put your logic inside main(), don't forget call inside:
-```swift
-func finish(result: CancellableAsyncResult<ResultType>) based on the result after starting your async call
-```
-
-## Additional info
-
-- [Quick start](tmdoc/quick_start.md)
-- [Initialization, creating  and performing operation](tmdoc/sample.md)
-- [Adding dependency](tmdoc/dependency.md)
+![](task_manager_concept.png)
 
 ## Requirements
 
-- iOS 13.0+
-- Xcode 9.2+
+- iOS 11.0+
+- Xcode 11.0+
 - Swift 5.0+
 
 ## Installation
 
 ### CocoaPods
 
-[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
-
-```bash
-$ gem install cocoapods
-```
-
-To integrate Toolbox into your Xcode project, specify it in your `Podfile`:
+To integrate Task Manager into your Xcode project with CocoaPods, specify it in your `Podfile`:
 
 ```ruby
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '13.0'
-use_frameworks!
-
-target '<Your Target Name>' do
-    pod 'Shakuro.TaskManager', '0.0.5'
-end
+pod 'Shakuro.TaskManager'
 ```
 
 Then, run the following command:
@@ -138,8 +38,32 @@ $ pod install
 
 ### Manually
 
-If you prefer not to use CocoaPods, you can integrate any/all components from the Shakuro iOS Toolbox simply by copying them to your project.
+If you prefer not to use CocoaPods, you can integrate Shakuro.TaskManager simply by copying it to your project.
+
+## Usage
+
+1. Create a couple of operations by subclassing `BaseOperation`. An operation should be a complete and independent unit of business logic. 
+2. Subclass `TaskManager` and override `.willPerformOperation()`. Define dependencies between operations in this method. It’s a good idea to create two separate `TaskManager` objects/subclasses: one to handle auth-related tasks and the second one for all other work.
+3. Start your tasks by calling `.performOperation()` or `.performGroup()` on `TaskManager`. You can use completions  to handle results.
+
+Have a look at the [TaskManagerExample](https://github.com/shakurocom/TaskManager/tree/master/TaskManagerExample)
+
+### Important notes
+
+An operation should have `operationHash` defined if its work rely only on its options. Hash is used in `.willPerformOperation()` to construct dependencies.
+
+Carefully consider the dependencies between operations. `.willPerformOperation()` should return an already existing in the queue (old) operation instead of a new one if both operations (old & new) are equal from the business logic perspective. This will result in only single operation being executed with multiple completion callbacks.
+
+Each task (an operation or a group of operations) can have a `retryHandler` to perform a retry under specified conditions. It is a perfect tool if you are dealing with an unreliable server.
+
+Usual flow: Interactor -> Options -> Task Manager (operations + dependencies inside) -> HTTP Client + Database -> Retry if error (for example session expired error) -> Completion block inside Interactor with typed result.
 
 ## License
 
-Shakuro iOS Toolbox is released under the MIT license. [See LICENSE](https://github.com/shakurocom/iOS_Toolbox/blob/master/LICENSE) for details.
+Shakuro.TaskManager is released under the MIT license. [See LICENSE](https://github.com/shakurocom/TaskManager/blob/master/LICENSE) for details.
+
+## Give it a try and reach us
+
+Star this tool if you like it, it will help us grow and add new useful things. 
+Feel free to reach out and hire our team to develop a mobile or web project for you.
+
