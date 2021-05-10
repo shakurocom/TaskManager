@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import Shakuro_CommonTypes
 
 open class BaseOperation<ResultType, OptionsType: BaseOperationOptions>: TaskOperation<ResultType>, DependencyProtocol, DependentOperation {
 
