@@ -6,7 +6,7 @@
 import Foundation
 
 internal protocol OperationPrototypeProtocol {
-    func instantiate() -> AsyncCompletionProtocol
+    func instantiate() -> OperationHashProtocol
 }
 
 internal final class OperationPrototype<ResultType, OptionsType: BaseOperationOptions>: OperationPrototypeProtocol {
@@ -19,7 +19,7 @@ internal final class OperationPrototype<ResultType, OptionsType: BaseOperationOp
         self.options = options
     }
 
-    internal func instantiate() -> AsyncCompletionProtocol {
+    internal func instantiate() -> OperationHashProtocol {
         return instantiateTyped()
     }
 

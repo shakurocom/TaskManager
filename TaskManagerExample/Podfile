@@ -4,7 +4,7 @@ use_frameworks!
 
 target 'TaskManagerExample' do
 
-  pod 'Shakuro.TaskManager'
+  pod 'Shakuro.TaskManager', :git => 'https://github.com/shakurocom/TaskManager.git', :commit => '542cd98ca9cb89ad7712ff475666030571ab73c6'
   pod 'Shakuro.HTTPClient'
 
 end

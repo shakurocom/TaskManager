@@ -12,7 +12,7 @@ PODS:
 
 DEPENDENCIES:
   - Shakuro.HTTPClient
-  - Shakuro.TaskManager
+  - Shakuro.TaskManager (from `https://github.com/shakurocom/TaskManager.git`, commit `542cd98ca9cb89ad7712ff475666030571ab73c6`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -20,7 +20,16 @@ SPEC REPOS:
     - CommonCryptoModule
     - Shakuro.CommonTypes
     - Shakuro.HTTPClient
-    - Shakuro.TaskManager
+
+EXTERNAL SOURCES:
+  Shakuro.TaskManager:
+    :commit: 542cd98ca9cb89ad7712ff475666030571ab73c6
+    :git: https://github.com/shakurocom/TaskManager.git
+
+CHECKOUT OPTIONS:
+  Shakuro.TaskManager:
+    :commit: 542cd98ca9cb89ad7712ff475666030571ab73c6
+    :git: https://github.com/shakurocom/TaskManager.git
 
 SPEC CHECKSUMS:
   Alamofire: 9d5c5f602928e512395b30950c5984eca840093c
@@ -29,6 +38,6 @@ SPEC CHECKSUMS:
   Shakuro.HTTPClient: 3ade92b42d297681e9fd10f20d618af5edd4c7ca
   Shakuro.TaskManager: c8fd8b65dcef0386c23c9ddd48014607f990e030
 
-PODFILE CHECKSUM: 2f48e1cac9782b4d0145d4523652c5ec49f3902b
+PODFILE CHECKSUM: 884382188b6301265ffea4ff87f7a8496e8e8a7a
 
 COCOAPODS: 1.8.3
