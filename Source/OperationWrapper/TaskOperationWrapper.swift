@@ -4,17 +4,14 @@
 //
 
 import Foundation
-import Shakuro_CommonTypes
 
-/**
- Simple operation wrapper.
- */
+/// Simple operation wrapper.
 internal class TaskOperationWrapper<ResultType>: OperationWrapper<ResultType> {
 
     private let mainOperation: TaskOperation<ResultType>
-    private let secondaryOperations: [AsyncCompletionProtocol]
+    private let secondaryOperations: [OperationHashProtocol]
 
-    init(mainOperation: TaskOperation<ResultType>, secondaryOperations: [AsyncCompletionProtocol]) {
+    init(mainOperation: TaskOperation<ResultType>, secondaryOperations: [OperationHashProtocol]) {
         self.mainOperation = mainOperation
         self.secondaryOperations = secondaryOperations
     }

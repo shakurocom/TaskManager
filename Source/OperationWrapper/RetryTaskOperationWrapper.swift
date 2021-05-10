@@ -4,11 +4,8 @@
 //
 
 import Foundation
-import Shakuro_CommonTypes
 
-/**
- Enhanced wrapper with ability to retry.
- */
+/// Enhanced wrapper with ability to retry.
 internal final class RetryTaskOperationWrapper<ResultType>: OperationWrapper<ResultType> {
 
     private enum State {
@@ -17,7 +14,7 @@ internal final class RetryTaskOperationWrapper<ResultType>: OperationWrapper<Res
     }
 
     private var mainOperation: TaskOperation<ResultType>
-    private var secondaryOperations: [AsyncCompletionProtocol]
+    private var secondaryOperations: [OperationHashProtocol]
     private var state: State = .executing
     private let retryHandler: RetryBlock<ResultType>
     private var retryNumber: Int = 0
@@ -25,7 +22,7 @@ internal final class RetryTaskOperationWrapper<ResultType>: OperationWrapper<Res
     private let accessLock: NSRecursiveLock
 
     internal init(mainOperation: TaskOperation<ResultType>,
-                  secondaryOperations: [AsyncCompletionProtocol],
+                  secondaryOperations: [OperationHashProtocol],
                   retryHandler: @escaping RetryBlock<ResultType>) {
         self.mainOperation = mainOperation
         self.secondaryOperations = secondaryOperations
@@ -69,20 +66,19 @@ internal final class RetryTaskOperationWrapper<ResultType>: OperationWrapper<Res
     }
 
     private func processMainOperationResult(_ mainOperationResult: CancellableAsyncResult<ResultType>) {
-        // sanity check
-        if case .finished = state {
-            let log = "invalid state of \(type(of: self)): \(state)"
-            assertionFailure(log)
-        }
         // cancelled operations can't be retried
         if isCancelled {
-            finish(result: .cancelled)
+            accessLock.execute({ () -> Void in
+                finishNoLock(result: .cancelled)
+            })
             return
         }
         let retryAttemptResult: RetryBlockResult<ResultType>
         switch mainOperationResult {
         case .cancelled:
-            finish(result: .cancelled)
+            accessLock.execute({ () -> Void in
+                finishNoLock(result: .cancelled)
+            })
             return
         case .success(let result):
             retryAttemptResult = retryHandler(retryNumber, .success(result: result))
@@ -92,7 +88,7 @@ internal final class RetryTaskOperationWrapper<ResultType>: OperationWrapper<Res
         accessLock.execute({
             switch retryAttemptResult {
             case .finish:
-                finish(result: mainOperationResult)
+                finishNoLock(result: mainOperationResult)
             case .retry(let newMainOperation, let newSecondaryOperations):
                 retryNumber += 1
                 mainOperation = newMainOperation
@@ -106,7 +102,12 @@ internal final class RetryTaskOperationWrapper<ResultType>: OperationWrapper<Res
         })
     }
 
-    private func finish(result: CancellableAsyncResult<ResultType>) {
+    private func finishNoLock(result: CancellableAsyncResult<ResultType>) {
+        // sanity check
+        if case .finished = state {
+            let log = "invalid state of \(type(of: self)): \(state)"
+            assertionFailure(log)
+        }
         state = .finished(result: result)
         for callback in completions {
             callback.performAsync(result: result)

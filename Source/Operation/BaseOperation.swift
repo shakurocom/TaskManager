@@ -1,12 +1,11 @@
 //
-// Copyright (c) 2018 Shakuro (https://shakuro.com/)
+// Copyright (c) 2018-2020 Shakuro (https://shakuro.com/)
 // Sergey Laschuk
 //
 
 import Foundation
-import Shakuro_CommonTypes
 
-open class BaseOperation<ResultType, OptionsType: BaseOperationOptions>: TaskOperation<ResultType>, DependencyProtocol, PriorityProtocol, DependentOperation {
+open class BaseOperation<ResultType, OptionsType: BaseOperationOptions>: TaskOperation<ResultType>, DependencyProtocol, DependentOperation {
 
     private indirect enum State { // idle -> executing -> finished : always that way
         case idle
@@ -17,8 +16,8 @@ open class BaseOperation<ResultType, OptionsType: BaseOperationOptions>: TaskOpe
     final public let options: OptionsType
 
     private var state: State
-    private let accessLock: NSRecursiveLock
     private var callbacks: [OperationCallback<ResultType>]
+    private var internalCallback: OperationCallback<ResultType>?
     private var strongDependencies: [Operation]
     private let internalOperationHash: String
 
@@ -27,9 +26,8 @@ open class BaseOperation<ResultType, OptionsType: BaseOperationOptions>: TaskOpe
     public required init(options aOptions: OptionsType) {
         options = aOptions
         state = .idle
-        accessLock = NSRecursiveLock()
-        accessLock.name = "\(type(of: self)).accessLock"
         callbacks = []
+        internalCallback = nil
         strongDependencies = []
         internalOperationHash = "\(type(of: self))-\(options.optionsHash())"
         super.init()
@@ -37,9 +35,7 @@ open class BaseOperation<ResultType, OptionsType: BaseOperationOptions>: TaskOpe
 
     // MARK: - Properties
 
-    /**
-     See `Operation.isExecuting` for description.
-     */
+    /// See `Operation.isExecuting` for description.
     final public override var isExecuting: Bool {
         switch state {
         case .idle,
@@ -50,9 +46,7 @@ open class BaseOperation<ResultType, OptionsType: BaseOperationOptions>: TaskOpe
         }
     }
 
-    /**
-     See `Operation.isFinidhed` for description.
-     */
+    /// See `Operation.isFinidhed` for description.
     final public override var isFinished: Bool {
         switch state {
         case .idle,
@@ -63,11 +57,9 @@ open class BaseOperation<ResultType, OptionsType: BaseOperationOptions>: TaskOpe
         }
     }
 
-    /**
-     Result of the operation. Returns nil if operation is not yet finished.
-     */
+    /// Result of the operation. Returns nil if operation is not yet finished.
     public final override var operationResult: CancellableAsyncResult<ResultType>? {
-        let result = accessLock.execute({ () -> CancellableAsyncResult<ResultType>? in
+        let result = performProtected({ () -> CancellableAsyncResult<ResultType>? in
             switch state {
             case .idle,
                  .executing:
@@ -79,17 +71,15 @@ open class BaseOperation<ResultType, OptionsType: BaseOperationOptions>: TaskOpe
         return result
     }
 
-    /**
-     Unique identyfier of operation, including it's options.
-     */
+    /// Unique identyfier of operation, including it's options.
     final public override var operationHash: String {
         return internalOperationHash
     }
 
     // MARK: - Operation actions
 
-    final public override func cancel() {
-        accessLock.execute({ () -> Void in
+    public final override func cancel() {
+        performProtected({ () -> Void in
             if !self.isCancelled {
                 super.cancel()
                 internalCancel()
@@ -97,9 +87,10 @@ open class BaseOperation<ResultType, OptionsType: BaseOperationOptions>: TaskOpe
         })
     }
 
-    final public override func onComplete(queue: DispatchQueue?, closure: @escaping (_ result: CancellableAsyncResult<ResultType>) -> Void) {
-        let newCallback = OperationCallback(callbackQueue: queue, callback: closure)
-        accessLock.execute({ () -> Void in
+    public final override func onComplete(queue: DispatchQueue?, closure: @escaping (_ result: CancellableAsyncResult<ResultType>) -> Void) {
+        let newCallback = OperationCallback(callbackQueue: queue ?? DispatchQueue.global(),
+                                            callback: closure)
+        performProtected({ () -> Void in
             switch state {
             case .idle,
                  .executing:
@@ -110,29 +101,23 @@ open class BaseOperation<ResultType, OptionsType: BaseOperationOptions>: TaskOpe
         })
     }
 
-    final public override func addDependency(_ operation: Operation) {
+    public final override func addDependency(_ operation: Operation) {
         addDependencyInternal(operation: operation, isStrongDependency: false)
     }
 
-    final public func addDependency(operation dependencyOperation: TaskManager.OperationInQueue, isStrongDependency: Bool) {
+    public final func addDependency(operation dependencyOperation: TaskManager.OperationInQueue, isStrongDependency: Bool) {
         guard let test = dependencyOperation as? Operation else {
             return
         }
         addDependencyInternal(operation: test, isStrongDependency: isStrongDependency)
     }
 
-    final public func performProtected<T>(_ closure: () -> T) -> T {
-        return accessLock.execute(closure)
-    }
-
-    /**
-     Start operation. You can start operation manually, but only if this operation is not in the queue.
-     You should not start already executing or finished operation.
-     In debug configuration this will produce assertion failure.
-     In release - second start will finish operation with `TaskManagerError.internalInconsistencyError`.
-     */
+    /// Start operation. You can start operation manually, but only if this operation is not in the queue.
+    /// You should not start already executing or finished operation.
+    /// In debug configuration this will produce assertion failure.
+    /// In release - second start will finish operation with `TaskManagerError.internalInconsistencyError`.
     final public override func start() {
-        let startFailure = accessLock.execute({ () -> CancellableAsyncResult<ResultType>? in
+        let startFailure = performProtected({ () -> CancellableAsyncResult<ResultType>? in
             var failureResult: CancellableAsyncResult<ResultType>?
             guard self.isReady else {
                 assertionFailure("\(type(of: self)): operation is not ready.")
@@ -183,12 +168,10 @@ open class BaseOperation<ResultType, OptionsType: BaseOperationOptions>: TaskOpe
         })
     }
 
-    /**
-     Use this method at the end of 'main()' function to properly finish operation and execute callbacks.
-     - parameter result: result of the operation. You can retrive it via `operationResult` property.
-     */
+    /// Use this method at the end of 'main()' function to properly finish operation and execute callbacks.
+    /// - parameter result: result of the operation. You can retrive it via `operationResult` property.
     final public func finish(result: CancellableAsyncResult<ResultType>) {
-        accessLock.execute({ () -> Void in
+        performProtected({ () -> Void in
             switch state {
             case .idle,
                  .finished:
@@ -198,61 +181,54 @@ open class BaseOperation<ResultType, OptionsType: BaseOperationOptions>: TaskOpe
             case .executing:
                 changeState(to: State.finished(operationResult: result))
                 internalFinished()
-                for callback in callbacks {
+                if let callback = internalCallback {
+                    // essentially this means, that we are inside TaskManager
                     callback.performAsync(result: result)
+                } else {
+                    // this is fallback: when operation executed outside of TaskManager (ex.: direct .start())
+                    performCallbacksNoLock(operationResult: result)
                 }
-                callbacks.removeAll()
             }
         })
     }
 
     // MARK: - Overridables
 
-    /**
-     Use this method to cancel your internal processes. Default implementation does nothing.
-     */
+    /// Use this method to cancel your internal processes. Default implementation does nothing.
     open func internalCancel() {
         // do nothing
     }
 
-    /**
-     Place your code here.
-     You MUST override it.
-     You MUST call `finish(result:)` to properly finish operation.
-     */
+    /// Place your code here.
+    /// You MUST override it.
+    /// You MUST call `finish(result:)` to properly finish operation.
     open override func main() {
         assertionFailure("\(type(of: self)): you MUST override 'main()' function.")
     }
 
-    /**
-     This function will be called inside 'finish(result:)'. You can override it to perform cleanup.
-     */
+    /// This function will be called inside 'finish(result:)'. You can override it to perform cleanup.
     open func internalFinished() {
-        //do nothing
+        // do nothing
     }
 
-    /**
-     Priority of operation. Works in conjunction with `priorityType`.
-     This value should not change after operation object was initialized.
-     Default value is 0.
-     */
-    open var priorityValue: Int {
+    /// Priority of operation. Works in conjunction with `priorityType`.
+    /// This value should not change after operation object was initialized.
+    /// Default value is 0.
+    open override var priorityValue: Int {
         return 0
     }
 
-    /**
-     See `OperationPriorityType` for description.
-     This value should not change after operation was initialized.
-     Deafult value is `OperationPriorityType.fifo`
-     */
-    open var priorityType: OperationPriorityType {
+    /// See `OperationPriorityType` for description.
+    /// This value should not change after operation was initialized.
+    /// Deafult value is `OperationPriorityType.fifo`
+    open override var priorityType: OperationPriorityType {
         return OperationPriorityType.fifo
     }
 
     // MARK: - Internal
 
     final internal func dependencyResult() -> CancellableAsyncResult<Void>? {
-        let result = accessLock.execute({ () -> CancellableAsyncResult<Void>? in
+        let result = performProtected({ () -> CancellableAsyncResult<Void>? in
             switch state {
             case .idle,
                  .executing:
@@ -264,11 +240,30 @@ open class BaseOperation<ResultType, OptionsType: BaseOperationOptions>: TaskOpe
         return result
     }
 
+    /// Special completion, that is used by task manager itself to manage its queue.
+    /// - parameter queue: queue for a completion block.
+    /// - parameter closure: completion block.
+    internal final override func setInternalCompletion(queue: DispatchQueue, closure: @escaping () -> Void) {
+        internalCallback = OperationCallback(callbackQueue: queue, callback: { (_) in
+            closure()
+        })
+    }
+
+    final internal override func executeOnCompleteCallbacks() {
+        performProtected({
+            switch state {
+            case .idle,
+                 .executing:
+                assertionFailure("BaseOperation: invalid state '\(state)'")
+            case .finished(operationResult: let operationResult):
+                performCallbacksNoLock(operationResult: operationResult)
+            }
+        })
+    }
+
     // MARK: - Private
 
-    /**
-     Change state of the operation. Also produces proper 'isExecuting' & 'isFinished' KVO notifications.
-     */
+    /// Change state of the operation. Also produces proper 'isExecuting' & 'isFinished' KVO notifications.
     private func changeState(to newState: State) {
         switch state {
         case .idle:
@@ -297,7 +292,7 @@ open class BaseOperation<ResultType, OptionsType: BaseOperationOptions>: TaskOpe
     }
 
     private func addDependencyInternal(operation dependencyOperation: Operation, isStrongDependency: Bool) {
-        accessLock.execute({ () -> Void in
+        performProtected({ () -> Void in
             guard case .idle = state else {
                 assertionFailure("BaseOperation: can't add dependencies for operation in state '\(state)'")
                 return
@@ -307,6 +302,13 @@ open class BaseOperation<ResultType, OptionsType: BaseOperationOptions>: TaskOpe
                 strongDependencies.append(dependencyOperation)
             }
         })
+    }
+
+    private func performCallbacksNoLock(operationResult: CancellableAsyncResult<ResultType>) {
+        for callback in callbacks {
+            callback.performAsync(result: operationResult)
+        }
+        callbacks.removeAll()
     }
 
 }

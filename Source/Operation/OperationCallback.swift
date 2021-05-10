@@ -4,11 +4,8 @@
 //
 
 import Foundation
-import Shakuro_CommonTypes
 
-/**
- Wrapper for a block, that can be run on a specified queue.
- */
+/// Wrapper for a block, that can be run on a specified queue.
 final internal class OperationCallback<ResultType> {
 
     internal typealias CallbackType = (_ result: CancellableAsyncResult<ResultType>) -> Void

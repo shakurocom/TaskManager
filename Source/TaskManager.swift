@@ -4,17 +4,14 @@
 //
 
 import Foundation
-import Shakuro_CommonTypes
 
-/**
- Manager of different background tasks.
- Implements advanced queue logic that considers operation's priority.
- To implement some specific logic and operation dependencies you need to override 'resolveLogicFlow()'.
- */
+/// Manager of different background tasks.
+/// Implements advanced queue logic that considers operation's priority.
+/// To implement some specific logic and operation dependencies you need to override 'resolveLogicFlow()'.
 open class TaskManager {
 
-    public typealias OperationInQueue = CancellableOperation & DependentOperation & PriorityProtocol & AsyncCompletionProtocol
-    private typealias OperationInQueueInternal = Operation & DependentOperation & PriorityProtocol & AsyncCompletionProtocol
+    public typealias OperationInQueue = CancellableOperation & DependentOperation & OperationHashProtocol
+    private typealias OperationInQueueInternal = Operation & DependentOperation & OperationHashProtocol & InternalOperationProtocol
 
     private let name: String
     private let accessLock: NSRecursiveLock
@@ -29,12 +26,10 @@ open class TaskManager {
 
     // MARK: - Initialization
 
-    /**
-     - parameter name: name of the task manager. It will be used as a prefix for instantiated operations.
-     Example: `com.shakuro.ExampleApp.ExampleTaskManager`
-     - parameter qualityOfService: QoS for internal queue.
-     - parameter maxConcurrentOperationCount: maximum number of operations allowed to execute in parallel.
-     */
+    /// - parameter name: name of the task manager. It will be used as a prefix for instantiated operations.
+    /// Example: `com.shakuro.ExampleApp.ExampleTaskManager`
+    /// - parameter qualityOfService: QoS for internal queue.
+    /// - parameter maxConcurrentOperationCount: maximum number of operations allowed to execute in parallel.
     public init(name aName: String, qualityOfService: QualityOfService, maxConcurrentOperationCount: Int) {
         name = aName
         accessLock = NSRecursiveLock()
@@ -53,10 +48,8 @@ open class TaskManager {
 
     // MARK: - Public
 
-    /**
-     Convenience version of `performOperation(operations:retryHandler:)` for single operation and no retry block.
-     You *realy* should handle retry inside operation itself in this case.
-     */
+    /// Convenience version of `performOperation(operations:retryHandler:)` for single operation and no retry block.
+    /// You *realy* should handle retry inside operation itself in this case.
     final public func performOperation<ResultType, OptionsType>(operationType: BaseOperation<ResultType, OptionsType>.Type,
                                                                 options: OptionsType) -> Task<ResultType> {
         let wrapper = accessLock.execute({ () -> OperationWrapper<ResultType> in
@@ -66,13 +59,11 @@ open class TaskManager {
         return Task(operationWrapper: wrapper)
     }
 
-    /**
-     Main method of task manager.
-     It will instantiate operations from group, pass them to `willPerformOperation()` (to resolve dependencies), and then add them to the internal queue.
-     - parameter group: group of operations to be run. Secondary operation added to the queue before main operation.
-     - parameter retryHandler: bunch of blocks to handle retry logic.
-     - returns: opaque token `Task` for created operations. Use it to add completion blocks or cancel underlying operations.
-     */
+    /// Main method of task manager.
+    /// It will instantiate operations from group, pass them to `willPerformOperation()` (to resolve dependencies), and then add them to the internal queue.
+    /// - parameter group: group of operations to be run. Secondary operation added to the queue before main operation.
+    /// - parameter retryHandler: bunch of blocks to handle retry logic.
+    /// - returns: opaque token `Task` for created operations. Use it to add completion blocks or cancel underlying operations.
     final public func performGroup<ResultType, OptionsType>(_ group: OperationGroup<ResultType, OptionsType>,
                                                             retryHandler: RetryHandler<ResultType>?) -> Task<ResultType> {
         let wrapper = accessLock.execute({ () -> OperationWrapper<ResultType> in
@@ -81,39 +72,37 @@ open class TaskManager {
         return Task(operationWrapper: wrapper)
     }
 
-    /**
-     Override this method to add custom logic for specific operations.
-     Use `type(of:)` or `operationHash` to identify operations in queue.
-
-     Default implementation returns input 'newOperation'.
-
-     - parameter newOperation: newly-instantiated operation (from `performOperation()`)
-     - parameter operationsInQueue: operations already in queue. Not sorted. Can include operations, that were cancelled or already in progress.
-     - returns: This method must return operation that will **actually** be added to queue.
-     To enforce uniqueness of an operation return operation, that is already in queue.
-
-     - warning: do not add new dependencies to operation that is already in queue.
-
-     ```
-     // Example: 'sign in' operation is unique and will cancel all previous operations:
-
-     let result: TaskManager.OperationInQueue
-     switch newOperation {
-     case let _ as SignInOperation:
-     let signInInQueue = operationsInQueue.first(where: { (operation: Operation) -> Bool in
-     return operation.operationHash == newOperation.operationHash
-     })
-     if let actualSignIn = signInInQueue {
-     result = signInInQueue
-     } else {
-     result = newOperation
-     }
-     default:
-     result = newOperation
-     }
-     return result
-     ```
-     */
+    /// Override this method to add custom logic for specific operations.
+    /// Use `type(of:)` or `operationHash` to identify operations in queue.
+    ///
+    /// Default implementation returns input 'newOperation'.
+    ///
+    /// - parameter newOperation: newly-instantiated operation (from `performOperation()`)
+    /// - parameter operationsInQueue: operations already in queue. Not sorted. Can include operations, that were cancelled or already in progress.
+    /// - returns: This method must return operation that will **actually** be added to queue.
+    /// To enforce uniqueness of an operation return operation, that is already in queue.
+    ///
+    /// - warning: do not add new dependencies to operation that is already in queue.
+    ///
+    /// ```
+    /// // Example: 'sign in' operation is unique and will cancel all previous operations:
+    ///
+    /// let result: TaskManager.OperationInQueue
+    /// switch newOperation {
+    /// case let _ as SignInOperation:
+    ///     let signInInQueue = operationsInQueue.first(where: { (operation: Operation) -> Bool in
+    ///         return operation.operationHash == newOperation.operationHash
+    ///     })
+    ///     if let actualSignIn = signInInQueue {
+    ///         result = signInInQueue
+    ///     } else {
+    ///         result = newOperation
+    ///     }
+    /// default:
+    ///     result = newOperation
+    /// }
+    /// return result
+    /// ```
     open func willPerformOperation(newOperation: TaskManager.OperationInQueue,
                                    enqueuedOperations: [TaskManager.OperationInQueue]) -> TaskManager.OperationInQueue {
         return newOperation
@@ -127,9 +116,7 @@ open class TaskManager {
         })
     }
 
-    /**
-     Cancel all operations.
-     */
+    /// Cancel all operations.
     final public func cancelAll() {
         accessLock.execute({
             allOperations.forEach({ $0.cancel() })
@@ -142,9 +129,7 @@ open class TaskManager {
 
 private extension TaskManager {
 
-    /**
-     Instantiate single operation with provided options; resolve retries
-     */
+    /// Instantiate single operation with provided options; resolve retries
     private func performGroupNoLock<ResultType, OptionsType: BaseOperationOptions>(_ group: OperationGroup<ResultType, OptionsType>,
                                                                                    retryHandler: RetryHandler<ResultType>?) -> OperationWrapper<ResultType> {
         let newWrapper: OperationWrapper<ResultType>
@@ -186,18 +171,14 @@ private extension TaskManager {
         return newWrapper
     }
 
-    /**
-     Instantiate and add to queue all operations from given `OperationSequence`.
-     */
+    /// Instantiate and add to queue all operations from given `OperationSequence`.
     private func instantiateOperationGroupNoLock<R, O: BaseOperationOptions>(_ group: OperationGroup<R, O>) -> OperationGroupResult<R, O> {
         let secondaryOperations = group.secondaryOperationPrototypes.map({ instantiateOperationNoLock(operation: $0) })
         let mainOperation = instantiateTypedOperationNoLock(operation: group.mainOperationPrototype)
         return OperationGroupResult(mainOperation: mainOperation, secondaryOperations: secondaryOperations)
     }
 
-    /**
-     Typed variant of instantiateOperationNoLock(operation: options:)
-     */
+    /// Typed variant of instantiateOperationNoLock(operation: options:)
     private func instantiateTypedOperationNoLock<R, O: BaseOperationOptions>(operation: OperationPrototype<R, O>) -> BaseOperation<R, O> {
         let newOperation = instantiateOperationNoLock(operation: operation)
         guard let typedResult = newOperation as? BaseOperation<R, O> else {
@@ -208,10 +189,8 @@ private extension TaskManager {
         return typedResult
     }
 
-    /**
-     Instantiate single operation with provided options; resolve dependencies/uniqueness; add new operation to queue.
-     */
-    private func instantiateOperationNoLock(operation: OperationPrototypeProtocol) -> AsyncCompletionProtocol {
+    /// Instantiate single operation with provided options; resolve dependencies/uniqueness; add new operation to queue.
+    private func instantiateOperationNoLock(operation: OperationPrototypeProtocol) -> OperationHashProtocol {
         setSuspendedNoLock(true)
 
         let newOperation = operation.instantiate()
@@ -242,9 +221,7 @@ private extension TaskManager {
 
 private extension TaskManager {
 
-    /**
-     Add operation to queue. Tries to starts available operations.
-     */
+    /// Add operation to queue. Tries to starts available operations.
     private func addOperationToQueueNoLock(_ newOperation: OperationInQueueInternal) {
         let index: Int?
         switch newOperation.priorityType {
@@ -263,7 +240,7 @@ private extension TaskManager {
             notEnqueuedOperations.append(newOperation)
         }
         allOperations.append(newOperation)
-        newOperation.onComplete(queue: cleanupQueue, closure: { [weak self] () -> Void in
+        newOperation.setInternalCompletion(queue: cleanupQueue, closure: { [weak self] () -> Void in
             guard let strongSelf = self else {
                 return
             }
@@ -276,15 +253,14 @@ private extension TaskManager {
                 }
                 strongSelf.startOperationsNoLock()
             })
+            newOperation.executeOnCompleteCallbacks()
         })
         startOperationsNoLock()
     }
 
-    /**
-     Change suspension state of the queue.
-     Suspended queue can't start additional perations.
-     Do not affect already started operations.
-     */
+    /// Change suspension state of the queue.
+    /// Suspended queue can't start additional perations.
+    /// Do not affect already started operations.
     private func setSuspendedNoLock(_ newValue: Bool) {
         isSuspendedInternal = newValue
         operationQueue.isSuspended = newValue
@@ -293,10 +269,8 @@ private extension TaskManager {
         }
     }
 
-    /**
-     Start operations from queue if able.
-     Operation must have all dependencies finished to qualify.
-     */
+    /// Start operations from queue if able.
+    /// Operation must have all dependencies finished to qualify.
     private func startOperationsNoLock() {
         guard !isSuspendedInternal else {
             return
