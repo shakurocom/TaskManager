@@ -7,9 +7,7 @@ import Foundation
 
 public enum TaskManagerError: Error {
 
-    /**
-     A failsafe error in case something bad has happened inside queue or operation.
-     */
+    /// A failsafe error in case something bad has happened inside queue or operation.
     case internalInconsistencyError
 
 }

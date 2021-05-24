@@ -9,9 +9,7 @@ import Shakuro_CommonTypes
 internal protocol OperationWrapperProtocol: CancellableOperation {
 }
 
-/**
- Base class for OperationWrappers. Abstract!
- */
+/// Base class for OperationWrappers. Abstract!
 internal class OperationWrapper<ResultType>: OperationWrapperProtocol {
 
     internal var operationHash: String {

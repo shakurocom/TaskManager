@@ -24,7 +24,7 @@ public final class RetryHandler<ResultType> {
 
 internal enum RetryBlockResult<ResultType> {
     case finish
-    case retry(newMainOperation: TaskOperation<ResultType>, newSecondaryOperations: [AsyncCompletionProtocol])
+    case retry(newMainOperation: TaskOperation<ResultType>, newSecondaryOperations: [OperationHashProtocol])
 }
 
 internal typealias RetryBlock<ResultType> = (_ retryNumber: Int, _ mainTaskResult: AsyncResult<ResultType>) -> RetryBlockResult<ResultType>
