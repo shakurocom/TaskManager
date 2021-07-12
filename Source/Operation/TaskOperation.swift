@@ -6,11 +6,7 @@
 import Foundation
 import Shakuro_CommonTypes
 
-<<<<<<< HEAD
-public protocol AsyncCompletionProtocol: AnyObject {
-=======
-public protocol OperationHashProtocol: class {
->>>>>>> 9e9e86c2f9ca4de316f7ae87489d538d43f41216
+public protocol OperationHashProtocol: AnyObject {
 
     /// Unique identifier of operation. Consists of `type(of: self)` + `options.optionsHash()`.
     /// Used in `TaskManager.willPerformOperation()` to resolve operations dependencies.

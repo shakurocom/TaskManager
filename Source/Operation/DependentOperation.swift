@@ -6,16 +6,9 @@
 import Foundation
 import Shakuro_CommonTypes
 
-<<<<<<< HEAD
 internal protocol DependencyProtocol: AnyObject {
-    /**
-     See `DependencyResult` for description.
-     */
-=======
-internal protocol DependencyProtocol: class {
 
     /// See `DependencyResult` for description.
->>>>>>> 9e9e86c2f9ca4de316f7ae87489d538d43f41216
     func dependencyResult() -> CancellableAsyncResult<Void>?
 
 }

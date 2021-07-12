@@ -9,27 +9,26 @@
 /* Begin PBXBuildFile section */
 		C82F0C165192838BE4823210 /* Pods_TaskManager_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 782764DA755431E4A5635BA8 /* Pods_TaskManager_Framework.framework */; };
 		F06FD42A269C31E5008AED7B /* TaskManager_Framework.h in Headers */ = {isa = PBXBuildFile; fileRef = F06FD428269C31E5008AED7B /* TaskManager_Framework.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F06FD453269C324C008AED7B /* BaseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD431269C324C008AED7B /* BaseOperation.swift */; };
-		F06FD454269C324C008AED7B /* BaseOperationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD432269C324C008AED7B /* BaseOperationOptions.swift */; };
-		F06FD462269C324C008AED7B /* CancellableOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD442269C324C008AED7B /* CancellableOperation.swift */; };
-		F06FD463269C324C008AED7B /* DependentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD443269C324C008AED7B /* DependentOperation.swift */; };
-		F06FD464269C324C008AED7B /* OperationCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD444269C324C008AED7B /* OperationCallback.swift */; };
-		F06FD465269C324C008AED7B /* OperationPriority.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD445269C324C008AED7B /* OperationPriority.swift */; };
-		F06FD466269C324C008AED7B /* TaskOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD446269C324C008AED7B /* TaskOperation.swift */; };
-		F06FD467269C324C008AED7B /* OperationGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD448269C324C008AED7B /* OperationGroup.swift */; };
-		F06FD468269C324C008AED7B /* OperationGroupResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD449269C324C008AED7B /* OperationGroupResult.swift */; };
-		F06FD469269C324C008AED7B /* OperationPrototype.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD44A269C324C008AED7B /* OperationPrototype.swift */; };
-		F06FD46A269C324C008AED7B /* OperationWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD44C269C324C008AED7B /* OperationWrapper.swift */; };
-		F06FD46B269C324C008AED7B /* RetryTaskOperationWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD44D269C324C008AED7B /* RetryTaskOperationWrapper.swift */; };
-		F06FD46C269C324C008AED7B /* TaskOperationWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD44E269C324C008AED7B /* TaskOperationWrapper.swift */; };
-		F06FD46D269C324C008AED7B /* RetryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD44F269C324C008AED7B /* RetryHandler.swift */; };
-		F06FD46E269C324C008AED7B /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD450269C324C008AED7B /* Task.swift */; };
-		F06FD46F269C324C008AED7B /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD451269C324C008AED7B /* TaskManager.swift */; };
-		F06FD470269C324C008AED7B /* TaskManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD452269C324C008AED7B /* TaskManagerError.swift */; };
 		F06FD472269C325D008AED7B /* Shakuro.TaskManager.podspec in Resources */ = {isa = PBXBuildFile; fileRef = F06FD471269C325D008AED7B /* Shakuro.TaskManager.podspec */; };
 		F06FD475269C3264008AED7B /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F06FD473269C3264008AED7B /* README.md */; };
 		F06FD476269C3264008AED7B /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = F06FD474269C3264008AED7B /* LICENSE.md */; };
 		F06FD4A5269C36A7008AED7B /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = F06FD4A4269C36A7008AED7B /* .swiftlint.yml */; };
+		F06FD4BA269C3B10008AED7B /* BaseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD4A8269C3B10008AED7B /* BaseOperation.swift */; };
+		F06FD4BB269C3B10008AED7B /* BaseOperationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD4A9269C3B10008AED7B /* BaseOperationOptions.swift */; };
+		F06FD4BC269C3B10008AED7B /* CancellableOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD4AA269C3B10008AED7B /* CancellableOperation.swift */; };
+		F06FD4BD269C3B10008AED7B /* DependentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD4AB269C3B10008AED7B /* DependentOperation.swift */; };
+		F06FD4BE269C3B10008AED7B /* OperationCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD4AC269C3B10008AED7B /* OperationCallback.swift */; };
+		F06FD4BF269C3B10008AED7B /* TaskOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD4AD269C3B10008AED7B /* TaskOperation.swift */; };
+		F06FD4C0269C3B10008AED7B /* OperationGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD4AF269C3B10008AED7B /* OperationGroup.swift */; };
+		F06FD4C1269C3B10008AED7B /* OperationGroupResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD4B0269C3B10008AED7B /* OperationGroupResult.swift */; };
+		F06FD4C2269C3B10008AED7B /* OperationPrototype.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD4B1269C3B10008AED7B /* OperationPrototype.swift */; };
+		F06FD4C3269C3B10008AED7B /* OperationWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD4B3269C3B10008AED7B /* OperationWrapper.swift */; };
+		F06FD4C4269C3B10008AED7B /* RetryTaskOperationWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD4B4269C3B10008AED7B /* RetryTaskOperationWrapper.swift */; };
+		F06FD4C5269C3B10008AED7B /* TaskOperationWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD4B5269C3B10008AED7B /* TaskOperationWrapper.swift */; };
+		F06FD4C6269C3B10008AED7B /* RetryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD4B6269C3B10008AED7B /* RetryHandler.swift */; };
+		F06FD4C7269C3B10008AED7B /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD4B7269C3B10008AED7B /* Task.swift */; };
+		F06FD4C8269C3B10008AED7B /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD4B8269C3B10008AED7B /* TaskManager.swift */; };
+		F06FD4C9269C3B10008AED7B /* TaskManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD4B9269C3B10008AED7B /* TaskManagerError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,27 +38,26 @@
 		F06FD425269C31E5008AED7B /* TaskManager_Framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TaskManager_Framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F06FD428269C31E5008AED7B /* TaskManager_Framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskManager_Framework.h; sourceTree = "<group>"; };
 		F06FD429269C31E5008AED7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F06FD431269C324C008AED7B /* BaseOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseOperation.swift; sourceTree = "<group>"; };
-		F06FD432269C324C008AED7B /* BaseOperationOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseOperationOptions.swift; sourceTree = "<group>"; };
-		F06FD442269C324C008AED7B /* CancellableOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancellableOperation.swift; sourceTree = "<group>"; };
-		F06FD443269C324C008AED7B /* DependentOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependentOperation.swift; sourceTree = "<group>"; };
-		F06FD444269C324C008AED7B /* OperationCallback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationCallback.swift; sourceTree = "<group>"; };
-		F06FD445269C324C008AED7B /* OperationPriority.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationPriority.swift; sourceTree = "<group>"; };
-		F06FD446269C324C008AED7B /* TaskOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskOperation.swift; sourceTree = "<group>"; };
-		F06FD448269C324C008AED7B /* OperationGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationGroup.swift; sourceTree = "<group>"; };
-		F06FD449269C324C008AED7B /* OperationGroupResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationGroupResult.swift; sourceTree = "<group>"; };
-		F06FD44A269C324C008AED7B /* OperationPrototype.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationPrototype.swift; sourceTree = "<group>"; };
-		F06FD44C269C324C008AED7B /* OperationWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationWrapper.swift; sourceTree = "<group>"; };
-		F06FD44D269C324C008AED7B /* RetryTaskOperationWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetryTaskOperationWrapper.swift; sourceTree = "<group>"; };
-		F06FD44E269C324C008AED7B /* TaskOperationWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskOperationWrapper.swift; sourceTree = "<group>"; };
-		F06FD44F269C324C008AED7B /* RetryHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetryHandler.swift; sourceTree = "<group>"; };
-		F06FD450269C324C008AED7B /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
-		F06FD451269C324C008AED7B /* TaskManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskManager.swift; sourceTree = "<group>"; };
-		F06FD452269C324C008AED7B /* TaskManagerError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskManagerError.swift; sourceTree = "<group>"; };
 		F06FD471269C325D008AED7B /* Shakuro.TaskManager.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Shakuro.TaskManager.podspec; sourceTree = "<group>"; };
 		F06FD473269C3264008AED7B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F06FD474269C3264008AED7B /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 		F06FD4A4269C36A7008AED7B /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		F06FD4A8269C3B10008AED7B /* BaseOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseOperation.swift; sourceTree = "<group>"; };
+		F06FD4A9269C3B10008AED7B /* BaseOperationOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseOperationOptions.swift; sourceTree = "<group>"; };
+		F06FD4AA269C3B10008AED7B /* CancellableOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancellableOperation.swift; sourceTree = "<group>"; };
+		F06FD4AB269C3B10008AED7B /* DependentOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependentOperation.swift; sourceTree = "<group>"; };
+		F06FD4AC269C3B10008AED7B /* OperationCallback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationCallback.swift; sourceTree = "<group>"; };
+		F06FD4AD269C3B10008AED7B /* TaskOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskOperation.swift; sourceTree = "<group>"; };
+		F06FD4AF269C3B10008AED7B /* OperationGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationGroup.swift; sourceTree = "<group>"; };
+		F06FD4B0269C3B10008AED7B /* OperationGroupResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationGroupResult.swift; sourceTree = "<group>"; };
+		F06FD4B1269C3B10008AED7B /* OperationPrototype.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationPrototype.swift; sourceTree = "<group>"; };
+		F06FD4B3269C3B10008AED7B /* OperationWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationWrapper.swift; sourceTree = "<group>"; };
+		F06FD4B4269C3B10008AED7B /* RetryTaskOperationWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetryTaskOperationWrapper.swift; sourceTree = "<group>"; };
+		F06FD4B5269C3B10008AED7B /* TaskOperationWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskOperationWrapper.swift; sourceTree = "<group>"; };
+		F06FD4B6269C3B10008AED7B /* RetryHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetryHandler.swift; sourceTree = "<group>"; };
+		F06FD4B7269C3B10008AED7B /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		F06FD4B8269C3B10008AED7B /* TaskManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskManager.swift; sourceTree = "<group>"; };
+		F06FD4B9269C3B10008AED7B /* TaskManagerError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskManagerError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +96,7 @@
 				F06FD473269C3264008AED7B /* README.md */,
 				F06FD471269C325D008AED7B /* Shakuro.TaskManager.podspec */,
 				F06FD4A4269C36A7008AED7B /* .swiftlint.yml */,
-				F06FD430269C324C008AED7B /* Source */,
+				F06FD4A6269C3B10008AED7B /* Source */,
 				F06FD427269C31E5008AED7B /* TaskManager_Framework */,
 				F06FD426269C31E5008AED7B /* Products */,
 				746BBAE76F1E3F9E0E81C276 /* Pods */,
@@ -123,50 +121,49 @@
 			path = TaskManager_Framework;
 			sourceTree = "<group>";
 		};
-		F06FD430269C324C008AED7B /* Source */ = {
+		F06FD4A6269C3B10008AED7B /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				F06FD431269C324C008AED7B /* BaseOperation.swift */,
-				F06FD432269C324C008AED7B /* BaseOperationOptions.swift */,
-				F06FD441269C324C008AED7B /* Operation */,
-				F06FD447269C324C008AED7B /* OperationGroup */,
-				F06FD44B269C324C008AED7B /* OperationWrapper */,
-				F06FD44F269C324C008AED7B /* RetryHandler.swift */,
-				F06FD450269C324C008AED7B /* Task.swift */,
-				F06FD451269C324C008AED7B /* TaskManager.swift */,
-				F06FD452269C324C008AED7B /* TaskManagerError.swift */,
+				F06FD4A7269C3B10008AED7B /* Operation */,
+				F06FD4AE269C3B10008AED7B /* OperationGroup */,
+				F06FD4B2269C3B10008AED7B /* OperationWrapper */,
+				F06FD4B6269C3B10008AED7B /* RetryHandler.swift */,
+				F06FD4B7269C3B10008AED7B /* Task.swift */,
+				F06FD4B8269C3B10008AED7B /* TaskManager.swift */,
+				F06FD4B9269C3B10008AED7B /* TaskManagerError.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
 		};
-		F06FD441269C324C008AED7B /* Operation */ = {
+		F06FD4A7269C3B10008AED7B /* Operation */ = {
 			isa = PBXGroup;
 			children = (
-				F06FD442269C324C008AED7B /* CancellableOperation.swift */,
-				F06FD443269C324C008AED7B /* DependentOperation.swift */,
-				F06FD444269C324C008AED7B /* OperationCallback.swift */,
-				F06FD445269C324C008AED7B /* OperationPriority.swift */,
-				F06FD446269C324C008AED7B /* TaskOperation.swift */,
+				F06FD4A8269C3B10008AED7B /* BaseOperation.swift */,
+				F06FD4A9269C3B10008AED7B /* BaseOperationOptions.swift */,
+				F06FD4AA269C3B10008AED7B /* CancellableOperation.swift */,
+				F06FD4AB269C3B10008AED7B /* DependentOperation.swift */,
+				F06FD4AC269C3B10008AED7B /* OperationCallback.swift */,
+				F06FD4AD269C3B10008AED7B /* TaskOperation.swift */,
 			);
 			path = Operation;
 			sourceTree = "<group>";
 		};
-		F06FD447269C324C008AED7B /* OperationGroup */ = {
+		F06FD4AE269C3B10008AED7B /* OperationGroup */ = {
 			isa = PBXGroup;
 			children = (
-				F06FD448269C324C008AED7B /* OperationGroup.swift */,
-				F06FD449269C324C008AED7B /* OperationGroupResult.swift */,
-				F06FD44A269C324C008AED7B /* OperationPrototype.swift */,
+				F06FD4AF269C3B10008AED7B /* OperationGroup.swift */,
+				F06FD4B0269C3B10008AED7B /* OperationGroupResult.swift */,
+				F06FD4B1269C3B10008AED7B /* OperationPrototype.swift */,
 			);
 			path = OperationGroup;
 			sourceTree = "<group>";
 		};
-		F06FD44B269C324C008AED7B /* OperationWrapper */ = {
+		F06FD4B2269C3B10008AED7B /* OperationWrapper */ = {
 			isa = PBXGroup;
 			children = (
-				F06FD44C269C324C008AED7B /* OperationWrapper.swift */,
-				F06FD44D269C324C008AED7B /* RetryTaskOperationWrapper.swift */,
-				F06FD44E269C324C008AED7B /* TaskOperationWrapper.swift */,
+				F06FD4B3269C3B10008AED7B /* OperationWrapper.swift */,
+				F06FD4B4269C3B10008AED7B /* RetryTaskOperationWrapper.swift */,
+				F06FD4B5269C3B10008AED7B /* TaskOperationWrapper.swift */,
 			);
 			path = OperationWrapper;
 			sourceTree = "<group>";
@@ -279,23 +276,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F06FD468269C324C008AED7B /* OperationGroupResult.swift in Sources */,
-				F06FD470269C324C008AED7B /* TaskManagerError.swift in Sources */,
-				F06FD46C269C324C008AED7B /* TaskOperationWrapper.swift in Sources */,
-				F06FD466269C324C008AED7B /* TaskOperation.swift in Sources */,
-				F06FD453269C324C008AED7B /* BaseOperation.swift in Sources */,
-				F06FD46E269C324C008AED7B /* Task.swift in Sources */,
-				F06FD46D269C324C008AED7B /* RetryHandler.swift in Sources */,
-				F06FD46A269C324C008AED7B /* OperationWrapper.swift in Sources */,
-				F06FD46B269C324C008AED7B /* RetryTaskOperationWrapper.swift in Sources */,
-				F06FD465269C324C008AED7B /* OperationPriority.swift in Sources */,
-				F06FD462269C324C008AED7B /* CancellableOperation.swift in Sources */,
-				F06FD469269C324C008AED7B /* OperationPrototype.swift in Sources */,
-				F06FD467269C324C008AED7B /* OperationGroup.swift in Sources */,
-				F06FD464269C324C008AED7B /* OperationCallback.swift in Sources */,
-				F06FD46F269C324C008AED7B /* TaskManager.swift in Sources */,
-				F06FD463269C324C008AED7B /* DependentOperation.swift in Sources */,
-				F06FD454269C324C008AED7B /* BaseOperationOptions.swift in Sources */,
+				F06FD4BA269C3B10008AED7B /* BaseOperation.swift in Sources */,
+				F06FD4C0269C3B10008AED7B /* OperationGroup.swift in Sources */,
+				F06FD4C1269C3B10008AED7B /* OperationGroupResult.swift in Sources */,
+				F06FD4C6269C3B10008AED7B /* RetryHandler.swift in Sources */,
+				F06FD4BE269C3B10008AED7B /* OperationCallback.swift in Sources */,
+				F06FD4BF269C3B10008AED7B /* TaskOperation.swift in Sources */,
+				F06FD4C3269C3B10008AED7B /* OperationWrapper.swift in Sources */,
+				F06FD4C5269C3B10008AED7B /* TaskOperationWrapper.swift in Sources */,
+				F06FD4BB269C3B10008AED7B /* BaseOperationOptions.swift in Sources */,
+				F06FD4C9269C3B10008AED7B /* TaskManagerError.swift in Sources */,
+				F06FD4C4269C3B10008AED7B /* RetryTaskOperationWrapper.swift in Sources */,
+				F06FD4BC269C3B10008AED7B /* CancellableOperation.swift in Sources */,
+				F06FD4BD269C3B10008AED7B /* DependentOperation.swift in Sources */,
+				F06FD4C8269C3B10008AED7B /* TaskManager.swift in Sources */,
+				F06FD4C7269C3B10008AED7B /* Task.swift in Sources */,
+				F06FD4C2269C3B10008AED7B /* OperationPrototype.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
