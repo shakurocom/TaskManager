@@ -6,7 +6,7 @@
 import Foundation
 import Shakuro_CommonTypes
 
-public protocol AsyncCompletionProtocol: class {
+public protocol AsyncCompletionProtocol: AnyObject {
 
     /**
      Unique identifier of operation. Consists of `type(of: self)` + `options.optionsHash()`.

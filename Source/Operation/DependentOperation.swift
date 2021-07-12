@@ -6,7 +6,7 @@
 import Foundation
 import Shakuro_CommonTypes
 
-internal protocol DependencyProtocol: class {
+internal protocol DependencyProtocol: AnyObject {
     /**
      See `DependencyResult` for description.
      */

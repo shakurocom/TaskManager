@@ -228,7 +228,7 @@ open class BaseOperation<ResultType, OptionsType: BaseOperationOptions>: TaskOpe
      This function will be called inside 'finish(result:)'. You can override it to perform cleanup.
      */
     open func internalFinished() {
-        //do nothing
+        // do nothing
     }
 
     /**

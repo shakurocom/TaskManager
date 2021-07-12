@@ -6,7 +6,7 @@
 import Foundation
 import Shakuro_CommonTypes
 
-public protocol CancellableTask: class {
+public protocol CancellableTask: AnyObject {
 
     var operationHash: String { get }
     var isCancelled: Bool { get }

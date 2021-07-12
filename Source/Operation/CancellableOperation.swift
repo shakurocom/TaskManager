@@ -5,7 +5,7 @@
 
 import Foundation
 
-public protocol CancellableOperation: class {
+public protocol CancellableOperation: AnyObject {
 
     var isCancelled: Bool { get }
 
