@@ -1,0 +1,20 @@
+PODS:
+  - Shakuro.CommonTypes (1.1.0)
+  - SwiftLint (0.43.1)
+
+DEPENDENCIES:
+  - Shakuro.CommonTypes (= 1.1.0)
+  - SwiftLint (= 0.43.1)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Shakuro.CommonTypes
+    - SwiftLint
+
+SPEC CHECKSUMS:
+  Shakuro.CommonTypes: ce6dc9fe3a068a5e663a554d433703e6f4ea6a9f
+  SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
+
+PODFILE CHECKSUM: 3b304cbcf9ff58780aab97e5d0d1ded2417534bd
+
+COCOAPODS: 1.10.1

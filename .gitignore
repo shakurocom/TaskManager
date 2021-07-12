@@ -24,5 +24,4 @@ playground.xcworkspace
 # R.Swift
 *.generated.swift
 
-#CocoaPods
-#Pods
+Pods
