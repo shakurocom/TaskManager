@@ -10,8 +10,7 @@
 - [Usage](#usage)
 - [License](#license)
 
-Task manager is the Swift library designed to mange asynchronous operations.
-Main purpose of TaskManager component is to incapsulate work with server, database and other background operations into unit-like operations or tasks. This will help separate business logic from UI and reuse operations across the app.
+Task Manager is a Swift library designed to manage asynchronous operations. The main purpose of the Task Manager component is to encapsulate work with the server, database, and other background operations into unit-like operations or tasks. This helps to separate business logic from UI and reuse operations across the app.
 
 ![](task_manager_concept.png)
 
@@ -25,7 +24,7 @@ Main purpose of TaskManager component is to incapsulate work with server, databa
 
 ### CocoaPods
 
-To integrate TaskManager into your Xcode project with CocoaPods, specify it in your `Podfile`:
+To integrate Task Manager into your Xcode project with CocoaPods, specify it in your `Podfile`:
 
 ```ruby
 pod 'Shakuro.TaskManager'
@@ -39,27 +38,32 @@ $ pod install
 
 ### Manually
 
-If you prefer not to use CocoaPods, you can integrate Shakuro.TaskManager simply by copying them to your project.
+If you prefer not to use CocoaPods, you can integrate Shakuro.TaskManager simply by copying it to your project.
 
 ## Usage
 
-1. Create couple of operations by subclassing `BaseOperation`. Operation should be a complete and independent unit of business logic. 
-2. Subclass `TaskManager` and override `.willPerformOperation()`. Dependencies between operations should be defined here. It is a good idea to create two separate `TaskManager` objects/subclasses: one to handle auth-related tasks and second - for all other work.
-3. Start your tasks by calling `.performOperation()` or `.performGroup()` on `TaskManager`. Completions can be used to handle results.
+1. Create a couple of operations by subclassing `BaseOperation`. An operation should be a complete and independent unit of business logic. 
+2. Subclass `TaskManager` and override `.willPerformOperation()`. Define dependencies between operations in this method. It’s a good idea to create two separate `TaskManager` objects/subclasses: one to handle auth-related tasks and the second one for all other work.
+3. Start your tasks by calling `.performOperation()` or `.performGroup()` on `TaskManager`. You can use completions  to handle results.
 
-Have a look into [TaskManagerExample](https://github.com/shakurocom/TaskManager/tree/master/TaskManagerExample)
+Have a look at the [TaskManagerExample](https://github.com/shakurocom/TaskManager/tree/master/TaskManagerExample)
 
 ### Important notes
 
-Operation should have `operationHash` defined if it's work rely only on it's options. Hash is used in `.willPerformOperation()` to construct dependencies.
+An operation should have `operationHash` defined if its work rely only on its options. Hash is used in `.willPerformOperation()` to construct dependencies.
 
-Dependencies between operations should be carefully considered. `.willPerformOperation()` should return already existing in queue (old) operation instead of a new one if both operations (old & new) are equal from business logic perspective. This will result in only single operation being executed with multiple completion callbacks.
+Carefully consider the dependencies between operations. `.willPerformOperation()` should return an already existing in the queue (old) operation instead of a new one if both operations (old & new) are equal from the business logic perspective. This will result in only single operation being executed with multiple completion callbacks.
 
-Each task (operation or group of operations) can have a `retryHandler` to perform a retry under specified conditions. It is a perfect tool if you are dealing with unreliable server.
+Each task (an operation or a group of operations) can have a `retryHandler` to perform a retry under specified conditions. It is a perfect tool if you are dealing with an unreliable server.
 
 Usual flow: Interactor -> Options -> Task Manager (operations + dependencies inside) -> HTTP Client + Database -> Retry if error (for example session expired error) -> Completion block inside Interactor with typed result.
 
 ## License
 
 Shakuro.TaskManager is released under the MIT license. [See LICENSE](https://github.com/shakurocom/TaskManager/blob/master/LICENSE) for details.
+
+## Give it a try and reach us
+
+Star this tool if you like it, it will help us grow and add new useful things. 
+Feel free to reach out and hire our team to develop a mobile or web project for you.
 
