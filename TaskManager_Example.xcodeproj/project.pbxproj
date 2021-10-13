@@ -23,12 +23,9 @@
 		A5E9127F27169803004DF71C /* ExampleTaskManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E9127E27169803004DF71C /* ExampleTaskManagerViewController.swift */; };
 		A5E9128627169821004DF71C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E9128127169821004DF71C /* LaunchScreen.storyboard */; };
 		A5E9128727169821004DF71C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E9128327169821004DF71C /* Main.storyboard */; };
-		A5E9128827169821004DF71C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5E9128527169821004DF71C /* Info.plist */; };
 		A5E9128A2716989B004DF71C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5E912892716989B004DF71C /* Assets.xcassets */; };
 		C1C641C1D38BB0F07C84121E /* Pods_TaskManager_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEE38A9E94FFE9F91319945 /* Pods_TaskManager_Example.framework */; };
 		F06FD484269C33FA008AED7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD483269C33FA008AED7B /* AppDelegate.swift */; };
-		F06FD48B269C33FA008AED7B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F06FD489269C33FA008AED7B /* Main.storyboard */; };
-		F06FD490269C33FB008AED7B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F06FD48E269C33FB008AED7B /* LaunchScreen.storyboard */; };
 		F06FD49F269C35A1008AED7B /* TaskManager_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F06FD49E269C35A1008AED7B /* TaskManager_Framework.framework */; };
 		F06FD4A0269C35A1008AED7B /* TaskManager_Framework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F06FD49E269C35A1008AED7B /* TaskManager_Framework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -71,8 +68,6 @@
 		AEEE38A9E94FFE9F91319945 /* Pods_TaskManager_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TaskManager_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F06FD480269C33FA008AED7B /* TaskManager_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskManager_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F06FD483269C33FA008AED7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F06FD48A269C33FA008AED7B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		F06FD48F269C33FB008AED7B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F06FD49E269C35A1008AED7B /* TaskManager_Framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TaskManager_Framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -203,8 +198,6 @@
 				F06FD483269C33FA008AED7B /* AppDelegate.swift */,
 				A5E9125C27169765004DF71C /* Application */,
 				A5E9128027169821004DF71C /* Resources */,
-				F06FD489269C33FA008AED7B /* Main.storyboard */,
-				F06FD48E269C33FB008AED7B /* LaunchScreen.storyboard */,
 			);
 			path = TaskManager_Example;
 			sourceTree = "<group>";
@@ -270,12 +263,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F06FD490269C33FB008AED7B /* LaunchScreen.storyboard in Resources */,
 				A5E9128727169821004DF71C /* Main.storyboard in Resources */,
-				A5E9128827169821004DF71C /* Info.plist in Resources */,
 				A5E9128627169821004DF71C /* LaunchScreen.storyboard in Resources */,
 				A5E9128A2716989B004DF71C /* Assets.xcassets in Resources */,
-				F06FD48B269C33FA008AED7B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,22 +371,6 @@
 				A5E9128427169821004DF71C /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		F06FD489269C33FA008AED7B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F06FD48A269C33FA008AED7B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		F06FD48E269C33FB008AED7B /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F06FD48F269C33FB008AED7B /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
