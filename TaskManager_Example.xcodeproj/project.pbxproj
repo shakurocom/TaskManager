@@ -73,7 +73,6 @@
 		F06FD483269C33FA008AED7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F06FD48A269C33FA008AED7B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F06FD48F269C33FB008AED7B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		F06FD491269C33FB008AED7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F06FD49E269C35A1008AED7B /* TaskManager_Framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TaskManager_Framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -206,7 +205,6 @@
 				A5E9128027169821004DF71C /* Resources */,
 				F06FD489269C33FA008AED7B /* Main.storyboard */,
 				F06FD48E269C33FB008AED7B /* LaunchScreen.storyboard */,
-				F06FD491269C33FB008AED7B /* Info.plist */,
 			);
 			path = TaskManager_Example;
 			sourceTree = "<group>";
@@ -528,7 +526,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MW2UF479VW;
-				INFOPLIST_FILE = TaskManager_Example/Info.plist;
+				INFOPLIST_FILE = TaskManager_Example/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -548,7 +546,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MW2UF479VW;
-				INFOPLIST_FILE = TaskManager_Example/Info.plist;
+				INFOPLIST_FILE = TaskManager_Example/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
