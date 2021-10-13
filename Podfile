@@ -15,4 +15,5 @@ target 'TaskManager_Example' do
     project 'TaskManager_Example.xcodeproj'
     pod 'SwiftLint', '0.43.1'
     pod 'Shakuro.CommonTypes', '1.1.0'
+    pod 'Shakuro.HTTPClient'
 end

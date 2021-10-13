@@ -4,7 +4,7 @@
 
 import Foundation
 import Shakuro_HTTPClient
-import Shakuro_TaskManager
+import TaskManager_Framework
 
 internal struct GetStringsFromRandomOrgOperationOptions: BaseOperationOptions {
     let randomOrgClient: HTTPClient

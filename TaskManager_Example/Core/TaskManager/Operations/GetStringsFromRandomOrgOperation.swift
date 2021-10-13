@@ -4,7 +4,7 @@
 
 import Foundation
 import Shakuro_HTTPClient
-import Shakuro_TaskManager
+import TaskManager_Framework
 
 internal class GetStringsFromRandomOrgOperation: BaseOperation<String, GetStringsFromRandomOrgOperationOptions> {
 

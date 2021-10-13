@@ -3,6 +3,6 @@
 //
 
 import Foundation
-import Shakuro_TaskManager
+import TaskManager_Framework
 
 internal struct ExampleOperationOptions: BaseOperationOptions { }

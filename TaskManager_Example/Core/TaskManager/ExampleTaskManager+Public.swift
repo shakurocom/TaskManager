@@ -3,7 +3,7 @@
 //
 
 import Foundation
-import Shakuro_TaskManager
+import TaskManager_Framework
 
 extension ExampleTaskManager {
 
