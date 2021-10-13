@@ -7,11 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A5E91270271697B4004DF71C /* UniqueOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E91262271697B4004DF71C /* UniqueOperation.swift */; };
+		A5E91271271697B4004DF71C /* DependsOnAlwaysFailOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E91263271697B4004DF71C /* DependsOnAlwaysFailOperation.swift */; };
+		A5E91272271697B4004DF71C /* ExampleOperationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E91264271697B4004DF71C /* ExampleOperationOptions.swift */; };
+		A5E91273271697B4004DF71C /* AlwaysFailInTheEndOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E91265271697B4004DF71C /* AlwaysFailInTheEndOperation.swift */; };
+		A5E91274271697B4004DF71C /* LowPriorityOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E91266271697B4004DF71C /* LowPriorityOperation.swift */; };
+		A5E91275271697B4004DF71C /* HighPriorityOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E91267271697B4004DF71C /* HighPriorityOperation.swift */; };
+		A5E91276271697B4004DF71C /* GetStringsFromRandomOrgOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E91268271697B4004DF71C /* GetStringsFromRandomOrgOperation.swift */; };
+		A5E91277271697B4004DF71C /* GetStringsFromRandomOrgOperationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E91269271697B4004DF71C /* GetStringsFromRandomOrgOperationOptions.swift */; };
+		A5E91278271697B4004DF71C /* FirstOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E9126A271697B4004DF71C /* FirstOperation.swift */; };
+		A5E91279271697B4004DF71C /* ExampleTaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E9126B271697B4004DF71C /* ExampleTaskManager.swift */; };
+		A5E9127A271697B4004DF71C /* ExampleTaskManager+Public.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E9126C271697B4004DF71C /* ExampleTaskManager+Public.swift */; };
+		A5E9127B271697B4004DF71C /* RandomOrgAPIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E9126E271697B4004DF71C /* RandomOrgAPIEndpoint.swift */; };
+		A5E9127C271697B4004DF71C /* StringsParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E9126F271697B4004DF71C /* StringsParser.swift */; };
+		A5E9127F27169803004DF71C /* ExampleTaskManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E9127E27169803004DF71C /* ExampleTaskManagerViewController.swift */; };
+		A5E9128627169821004DF71C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E9128127169821004DF71C /* LaunchScreen.storyboard */; };
+		A5E9128727169821004DF71C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E9128327169821004DF71C /* Main.storyboard */; };
+		A5E9128827169821004DF71C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5E9128527169821004DF71C /* Info.plist */; };
+		A5E9128A2716989B004DF71C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5E912892716989B004DF71C /* Assets.xcassets */; };
 		C1C641C1D38BB0F07C84121E /* Pods_TaskManager_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEE38A9E94FFE9F91319945 /* Pods_TaskManager_Example.framework */; };
 		F06FD484269C33FA008AED7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD483269C33FA008AED7B /* AppDelegate.swift */; };
-		F06FD488269C33FA008AED7B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FD487269C33FA008AED7B /* ViewController.swift */; };
 		F06FD48B269C33FA008AED7B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F06FD489269C33FA008AED7B /* Main.storyboard */; };
-		F06FD48D269C33FB008AED7B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F06FD48C269C33FB008AED7B /* Assets.xcassets */; };
 		F06FD490269C33FB008AED7B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F06FD48E269C33FB008AED7B /* LaunchScreen.storyboard */; };
 		F06FD49F269C35A1008AED7B /* TaskManager_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F06FD49E269C35A1008AED7B /* TaskManager_Framework.framework */; };
 		F06FD4A0269C35A1008AED7B /* TaskManager_Framework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F06FD49E269C35A1008AED7B /* TaskManager_Framework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -34,12 +50,28 @@
 /* Begin PBXFileReference section */
 		1C64BAB5B94A74A60E6B474A /* Pods-TaskManager_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskManager_Example.release.xcconfig"; path = "Target Support Files/Pods-TaskManager_Example/Pods-TaskManager_Example.release.xcconfig"; sourceTree = "<group>"; };
 		2CCFAD8D8D329F2EBC483344 /* Pods-TaskManager_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskManager_Example.debug.xcconfig"; path = "Target Support Files/Pods-TaskManager_Example/Pods-TaskManager_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		A5E91262271697B4004DF71C /* UniqueOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniqueOperation.swift; sourceTree = "<group>"; };
+		A5E91263271697B4004DF71C /* DependsOnAlwaysFailOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependsOnAlwaysFailOperation.swift; sourceTree = "<group>"; };
+		A5E91264271697B4004DF71C /* ExampleOperationOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleOperationOptions.swift; sourceTree = "<group>"; };
+		A5E91265271697B4004DF71C /* AlwaysFailInTheEndOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlwaysFailInTheEndOperation.swift; sourceTree = "<group>"; };
+		A5E91266271697B4004DF71C /* LowPriorityOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LowPriorityOperation.swift; sourceTree = "<group>"; };
+		A5E91267271697B4004DF71C /* HighPriorityOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighPriorityOperation.swift; sourceTree = "<group>"; };
+		A5E91268271697B4004DF71C /* GetStringsFromRandomOrgOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetStringsFromRandomOrgOperation.swift; sourceTree = "<group>"; };
+		A5E91269271697B4004DF71C /* GetStringsFromRandomOrgOperationOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetStringsFromRandomOrgOperationOptions.swift; sourceTree = "<group>"; };
+		A5E9126A271697B4004DF71C /* FirstOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstOperation.swift; sourceTree = "<group>"; };
+		A5E9126B271697B4004DF71C /* ExampleTaskManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleTaskManager.swift; sourceTree = "<group>"; };
+		A5E9126C271697B4004DF71C /* ExampleTaskManager+Public.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ExampleTaskManager+Public.swift"; sourceTree = "<group>"; };
+		A5E9126E271697B4004DF71C /* RandomOrgAPIEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomOrgAPIEndpoint.swift; sourceTree = "<group>"; };
+		A5E9126F271697B4004DF71C /* StringsParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringsParser.swift; sourceTree = "<group>"; };
+		A5E9127E27169803004DF71C /* ExampleTaskManagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleTaskManagerViewController.swift; sourceTree = "<group>"; };
+		A5E9128227169821004DF71C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A5E9128427169821004DF71C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A5E9128527169821004DF71C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5E912892716989B004DF71C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AEEE38A9E94FFE9F91319945 /* Pods_TaskManager_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TaskManager_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F06FD480269C33FA008AED7B /* TaskManager_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskManager_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F06FD483269C33FA008AED7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F06FD487269C33FA008AED7B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F06FD48A269C33FA008AED7B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		F06FD48C269C33FB008AED7B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F06FD48F269C33FB008AED7B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F06FD491269C33FB008AED7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F06FD49E269C35A1008AED7B /* TaskManager_Framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TaskManager_Framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,6 +97,78 @@
 				1C64BAB5B94A74A60E6B474A /* Pods-TaskManager_Example.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		A5E9125C27169765004DF71C /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				A5E9125F271697B4004DF71C /* Core */,
+				A5E9127D27169803004DF71C /* UI */,
+			);
+			name = Application;
+			sourceTree = "<group>";
+		};
+		A5E9125F271697B4004DF71C /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				A5E91260271697B4004DF71C /* TaskManager */,
+				A5E9126D271697B4004DF71C /* APIClient */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		A5E91260271697B4004DF71C /* TaskManager */ = {
+			isa = PBXGroup;
+			children = (
+				A5E91261271697B4004DF71C /* Operations */,
+				A5E9126B271697B4004DF71C /* ExampleTaskManager.swift */,
+				A5E9126C271697B4004DF71C /* ExampleTaskManager+Public.swift */,
+			);
+			path = TaskManager;
+			sourceTree = "<group>";
+		};
+		A5E91261271697B4004DF71C /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				A5E91262271697B4004DF71C /* UniqueOperation.swift */,
+				A5E91263271697B4004DF71C /* DependsOnAlwaysFailOperation.swift */,
+				A5E91264271697B4004DF71C /* ExampleOperationOptions.swift */,
+				A5E91265271697B4004DF71C /* AlwaysFailInTheEndOperation.swift */,
+				A5E91266271697B4004DF71C /* LowPriorityOperation.swift */,
+				A5E91267271697B4004DF71C /* HighPriorityOperation.swift */,
+				A5E91268271697B4004DF71C /* GetStringsFromRandomOrgOperation.swift */,
+				A5E91269271697B4004DF71C /* GetStringsFromRandomOrgOperationOptions.swift */,
+				A5E9126A271697B4004DF71C /* FirstOperation.swift */,
+			);
+			path = Operations;
+			sourceTree = "<group>";
+		};
+		A5E9126D271697B4004DF71C /* APIClient */ = {
+			isa = PBXGroup;
+			children = (
+				A5E9126E271697B4004DF71C /* RandomOrgAPIEndpoint.swift */,
+				A5E9126F271697B4004DF71C /* StringsParser.swift */,
+			);
+			path = APIClient;
+			sourceTree = "<group>";
+		};
+		A5E9127D27169803004DF71C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				A5E9127E27169803004DF71C /* ExampleTaskManagerViewController.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		A5E9128027169821004DF71C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A5E912892716989B004DF71C /* Assets.xcassets */,
+				A5E9128527169821004DF71C /* Info.plist */,
+				A5E9128127169821004DF71C /* LaunchScreen.storyboard */,
+				A5E9128327169821004DF71C /* Main.storyboard */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		D36C4310D01F3E57DB6EA1BF /* Frameworks */ = {
@@ -98,9 +202,9 @@
 			isa = PBXGroup;
 			children = (
 				F06FD483269C33FA008AED7B /* AppDelegate.swift */,
-				F06FD487269C33FA008AED7B /* ViewController.swift */,
+				A5E9125C27169765004DF71C /* Application */,
+				A5E9128027169821004DF71C /* Resources */,
 				F06FD489269C33FA008AED7B /* Main.storyboard */,
-				F06FD48C269C33FB008AED7B /* Assets.xcassets */,
 				F06FD48E269C33FB008AED7B /* LaunchScreen.storyboard */,
 				F06FD491269C33FB008AED7B /* Info.plist */,
 			);
@@ -169,7 +273,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F06FD490269C33FB008AED7B /* LaunchScreen.storyboard in Resources */,
-				F06FD48D269C33FB008AED7B /* Assets.xcassets in Resources */,
+				A5E9128727169821004DF71C /* Main.storyboard in Resources */,
+				A5E9128827169821004DF71C /* Info.plist in Resources */,
+				A5E9128627169821004DF71C /* LaunchScreen.storyboard in Resources */,
+				A5E9128A2716989B004DF71C /* Assets.xcassets in Resources */,
 				F06FD48B269C33FA008AED7B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -241,14 +348,43 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F06FD488269C33FA008AED7B /* ViewController.swift in Sources */,
+				A5E9127C271697B4004DF71C /* StringsParser.swift in Sources */,
+				A5E91270271697B4004DF71C /* UniqueOperation.swift in Sources */,
+				A5E91275271697B4004DF71C /* HighPriorityOperation.swift in Sources */,
 				F06FD484269C33FA008AED7B /* AppDelegate.swift in Sources */,
+				A5E91277271697B4004DF71C /* GetStringsFromRandomOrgOperationOptions.swift in Sources */,
+				A5E91271271697B4004DF71C /* DependsOnAlwaysFailOperation.swift in Sources */,
+				A5E91278271697B4004DF71C /* FirstOperation.swift in Sources */,
+				A5E91272271697B4004DF71C /* ExampleOperationOptions.swift in Sources */,
+				A5E91274271697B4004DF71C /* LowPriorityOperation.swift in Sources */,
+				A5E9127F27169803004DF71C /* ExampleTaskManagerViewController.swift in Sources */,
+				A5E9127B271697B4004DF71C /* RandomOrgAPIEndpoint.swift in Sources */,
+				A5E9127A271697B4004DF71C /* ExampleTaskManager+Public.swift in Sources */,
+				A5E91279271697B4004DF71C /* ExampleTaskManager.swift in Sources */,
+				A5E91273271697B4004DF71C /* AlwaysFailInTheEndOperation.swift in Sources */,
+				A5E91276271697B4004DF71C /* GetStringsFromRandomOrgOperation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		A5E9128127169821004DF71C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5E9128227169821004DF71C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		A5E9128327169821004DF71C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5E9128427169821004DF71C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		F06FD489269C33FA008AED7B /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
