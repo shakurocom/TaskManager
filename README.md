@@ -1,4 +1,4 @@
-![Shakuro Task Manager](title_image.png)
+![Shakuro Task Manager](Resources/title_image.png)
 <br><br>
 # Task Manager
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
@@ -12,7 +12,7 @@
 
 Task Manager is a Swift library designed to manage asynchronous operations. The main purpose of the Task Manager component is to encapsulate work with the server, database, and other background operations into unit-like operations or tasks. This helps to separate business logic from UI and reuse operations across the app.
 
-![](task_manager_concept.png)
+![](Resources/task_manager_concept.png)
 
 ## Requirements
 
@@ -46,7 +46,7 @@ If you prefer not to use CocoaPods, you can integrate Shakuro.TaskManager simply
 2. Subclass `TaskManager` and override `.willPerformOperation()`. Define dependencies between operations in this method. It’s a good idea to create two separate `TaskManager` objects/subclasses: one to handle auth-related tasks and the second one for all other work.
 3. Start your tasks by calling `.performOperation()` or `.performGroup()` on `TaskManager`. You can use completions  to handle results.
 
-Have a look at the [TaskManagerExample](https://github.com/shakurocom/TaskManager/tree/master/TaskManagerExample)
+Have a look at the [TaskManager_Example](https://github.com/shakurocom/TaskManager/tree/master/TaskManager_Example)
 
 ### Important notes
 
@@ -60,7 +60,7 @@ Usual flow: Interactor -> Options -> Task Manager (operations + dependencies ins
 
 ## License
 
-Shakuro.TaskManager is released under the MIT license. [See LICENSE](https://github.com/shakurocom/TaskManager/blob/master/LICENSE) for details.
+Shakuro.TaskManager is released under the MIT license. [See LICENSE](https://github.com/shakurocom/TaskManager/blob/master/LICENSE.md) for details.
 
 ## Give it a try and reach us
 
