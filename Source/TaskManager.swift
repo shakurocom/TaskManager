@@ -240,7 +240,7 @@ private extension TaskManager {
             notEnqueuedOperations.append(newOperation)
         }
         allOperations.append(newOperation)
-        newOperation.setInternalCompletion(queue: cleanupQueue, closure: { [weak self] () -> Void in
+        newOperation.setInternalCompletion(queue: cleanupQueue, closure: { [weak self, weak newOperation] () -> Void in
             guard let strongSelf = self else {
                 return
             }
@@ -253,7 +253,7 @@ private extension TaskManager {
                 }
                 strongSelf.startOperationsNoLock()
             })
-            newOperation.executeOnCompleteCallbacks()
+            newOperation?.executeOnCompleteCallbacks()
         })
         startOperationsNoLock()
     }
