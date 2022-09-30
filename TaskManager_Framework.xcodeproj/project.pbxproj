@@ -83,8 +83,8 @@
 				F06FD4A4269C36A7008AED7B /* .swiftlint.yml */,
 				F06FD4A6269C3B10008AED7B /* Source */,
 				F06FD427269C31E5008AED7B /* TaskManager_Framework */,
-				F06FD426269C31E5008AED7B /* Products */,
 				746BBAE76F1E3F9E0E81C276 /* Pods */,
+				F06FD426269C31E5008AED7B /* Products */,
 			);
 			sourceTree = "<group>";
 		};
