@@ -241,19 +241,19 @@ private extension TaskManager {
         }
         allOperations.append(newOperation)
         newOperation.setInternalCompletion(queue: cleanupQueue, closure: { [weak self, weak newOperation] () -> Void in
-            guard let strongSelf = self else {
+            guard let strongSelf = self, let strongNewOperation = newOperation else {
                 return
             }
             strongSelf.accessLock.execute({
                 let indexToRemove = strongSelf.allOperations.firstIndex(where: { (operation) -> Bool in
-                    return operation === newOperation
+                    return operation === strongNewOperation
                 })
                 if let index = indexToRemove {
                     strongSelf.allOperations.remove(at: index)
                 }
                 strongSelf.startOperationsNoLock()
             })
-            newOperation?.executeOnCompleteCallbacks()
+            strongNewOperation.executeOnCompleteCallbacks()
         })
         startOperationsNoLock()
     }
