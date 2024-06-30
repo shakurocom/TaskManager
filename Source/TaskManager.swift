@@ -59,6 +59,36 @@ open class TaskManager {
         return Task(operationWrapper: wrapper)
     }
 
+    final public func performOperationAsync<ResultType, OptionsType>(operationType: BaseOperation<ResultType, OptionsType>.Type,
+                                                                     options: OptionsType) async throws -> ResultType {
+        let wrapper = accessLock.execute({ () -> OperationWrapper<ResultType> in
+            let group = OperationGroup(mainOperationType: operationType, options: options)
+            return performGroupNoLock(group, retryHandler: nil)
+        })
+        let task = Task(operationWrapper: wrapper)
+        return try await withTaskCancellationHandler(
+            operation: {
+                return try await withCheckedThrowingContinuation({ [weak self] (continuation: CheckedContinuation<ResultType, Error>) in
+                    guard let strongSelf = self else {
+                        return
+                    }
+                    task.onComplete(queue: nil, closure: { [weak self] (_, result) in
+                        switch result {
+                        case .success(let value):
+                            continuation.resume(returning: value)
+                        case .cancelled:
+                            break
+                        case .failure(let error):
+                            continuation.resume(throwing: error)
+                        }
+                    })
+                })
+            },
+            onCancel: {
+                task.cancel()
+            })
+    }
+
     /// Main method of task manager.
     /// It will instantiate operations from group, pass them to `willPerformOperation()` (to resolve dependencies), and then add them to the internal queue.
     /// - parameter group: group of operations to be run. Secondary operation added to the queue before main operation.
