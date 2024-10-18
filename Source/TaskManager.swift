@@ -77,7 +77,7 @@ open class TaskManager {
                         case .success(let value):
                             continuation.resume(returning: value)
                         case .cancelled:
-                            break
+                            continuation.resume(throwing: CancellationError())
                         case .failure(let error):
                             continuation.resume(throwing: error)
                         }
