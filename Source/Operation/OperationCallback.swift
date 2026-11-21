@@ -4,7 +4,11 @@
 //
 
 import Foundation
+#if SWIFT_PACKAGE
+import CommonTypes
+#else
 import Shakuro_CommonTypes
+#endif
 
 /// Wrapper for a block, that can be run on a specified queue.
 final internal class OperationCallback<ResultType> {

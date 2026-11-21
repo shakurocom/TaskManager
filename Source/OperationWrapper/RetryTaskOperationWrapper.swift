@@ -4,7 +4,11 @@
 //
 
 import Foundation
+#if SWIFT_PACKAGE
+import CommonTypes
+#else
 import Shakuro_CommonTypes
+#endif
 
 /// Enhanced wrapper with ability to retry.
 internal final class RetryTaskOperationWrapper<ResultType>: OperationWrapper<ResultType> {
